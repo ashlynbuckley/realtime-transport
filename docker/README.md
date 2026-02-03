@@ -79,3 +79,5 @@ You should also see in the Run output the Kafka topics being ingested and printe
 
 `./kafka-topics.sh --bootstrap-server localhost:9092 --describe --topic test-topic`
 
+`docker compose down`
+
