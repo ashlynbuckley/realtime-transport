@@ -16,7 +16,7 @@ Confirm both the Kafka and the MySQL containers are running using: `docker ps -a
 Each time you start the containers, you will have to configure some things. Firstly: a Kafka topic.
 
 To enter the Kafka terminal, do:
-`docker exec -it w/opt/kafka/bin broker sh`
+`docker exec -it -w /opt/kafka/bin broker sh`
 
 You should see `/opt/kafka/bin $`
 
@@ -66,4 +66,16 @@ Run FlinkJob.
 You can see if the code has ran successfully using: `SELECT * FROM messages` 
 
 This should return what you inputted into Kafka.
+
+You should also see in the Run output the Kafka topics being ingested and printed there.
+
+---
+
+## Additional Helpful Cmds
+
+`docker compose logs [container name]`
+
+`./kafka-topics.sh  --list --bootstrap-server localhost:9092`
+
+`./kafka-topics.sh --bootstrap-server localhost:9092 --describe --topic test-topic`
 
