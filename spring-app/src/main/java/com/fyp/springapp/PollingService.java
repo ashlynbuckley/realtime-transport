@@ -14,17 +14,30 @@ class PollingService {
         this.webClient = webClient;
     }
 
-    //fixedRate is in ms
     @Scheduled(fixedRate = 5000)
-    public void fetchAndSendToKafka() {
-        String response = webClient.get()
+    public void fetchStatus() {
+        webClient.get()
                 .uri("https://jsonplaceholder.typicode.com")
-                .retrieve()
-                //mono=one at a time
-                .bodyToMono(String.class)
-                //makes this a blocking operation
+                .exchangeToMono(response -> {
+                    System.out.println(response.statusCode());
+                    return response.bodyToMono(String.class);
+                })
+                //block will wait for the response
                 .block();
-//        kafkaTemplate.send("json", response);
-        System.out.println("Received response: " + response);
     }
+
+    //fixedRate is in ms
+//
+//    public void fetchAndSendToKafka() {
+//        String response = webClient.get()
+//                .uri("https://jsonplaceholder.typicode.com")
+//                .retrieve()
+//                //mono=one at a time, you need this to get the json
+//                .bodyToMono(String.class)
+//                //makes this a blocking operation
+//                .block();
+////        kafkaTemplate.send("json", response);
+//        System.out.println(response);
+//        System.out.println("Received response: " + response);
+    //}
 }
