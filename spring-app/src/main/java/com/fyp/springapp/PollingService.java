@@ -26,6 +26,17 @@ class PollingService {
                 .block();
     }
 
+    @Scheduled(fixedRate = 5000)
+    public void fetchJSONBody() {
+        String response = webClient.get()
+                .uri("https://jsonplaceholder.typicode.com/posts/1")
+                .retrieve()
+                .bodyToMono(String.class)
+                .block();
+        System.out.println("Response Body:");
+        System.out.println(response);
+    }
+
     //fixedRate is in ms
 //
 //    public void fetchAndSendToKafka() {
