@@ -12,7 +12,7 @@ public class KafkaSourceFactory {
     public static DataStream<String> createKafkaSource(StreamExecutionEnvironment env) {
         KafkaSource<String> source = KafkaSource.<String>builder()
                 .setBootstrapServers("localhost:9092") //kafka broker sending through here
-                .setTopics("test-topic")
+                .setTopics("test-topic-sb")
                 .setGroupId("flink-test-group")
                 .setStartingOffsets(OffsetsInitializer.earliest())
                 .setValueOnlyDeserializer(new SimpleStringSchema())

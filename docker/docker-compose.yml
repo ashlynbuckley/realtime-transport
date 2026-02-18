@@ -23,6 +23,17 @@ services:
       KAFKA_LOG_DIRS: /tmp/kraft-combined-logs
       CLUSTER_ID: MkU3OEVBNTcwNTJENDM2Qk
 
+#  flink-jobmanager:
+#    image: apache/flink:latest
+#    container_name: flink-jobmanager
+#    ports:
+#      - 3307:3306
+#  flink-taskmanager:
+#    image: apache/flink:latest
+#    container_name: flink-taskmanager
+#    ports:
+#      - 3307:3306
+
   mysql:
     image: mysql:8.0
     container_name: mysql

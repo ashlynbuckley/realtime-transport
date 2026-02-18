@@ -63,7 +63,7 @@ VALUES ("test message");
 ## Step 5:
 Run FlinkJob.
 
-You can see if the code has ran successfully using: `SELECT * FROM messages` 
+You can see if the code has ran successfully using: `SELECT * FROM messages;` 
 
 This should return what you inputted into Kafka.
 
