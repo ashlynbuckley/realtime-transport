@@ -10,12 +10,13 @@ public class FlinkJob {
         //Environment
         StreamExecutionEnvironment env = StreamExecutionEnvironment.getExecutionEnvironment();
         System.out.println("Flink Job Started");
-//new comment test
+
         //Source
         // TODO: Duplicate records needs to be handled
         DataStream<String> kafkaStream = KafkaSourceFactory.createKafkaSource(env);
         //Print what we ingested for debugging
         kafkaStream.print();
+        //Sink
         kafkaStream.addSink(MySQLSinkFactory.configureSink());
 
         env.execute("Process Messages");
