@@ -71,6 +71,16 @@ You should also see in the Run output the Kafka topics being ingested and printe
 
 ---
 
+## Testing Spring With Kafka Container
+
+You can watch a kafka topic fill up with messages using:
+```
+./kafka-console-consumer.sh \
+    --bootstrap-server localhost:9092 \
+    --topic test-topic-sb \
+    --from-beginning
+```
+
 ## Additional Helpful Cmds
 
 `docker compose logs [container name]`

@@ -43,7 +43,7 @@ class PollingService {
         sendResponseToKafka(response);
     }
 
-    public void sendResponseToKafka(String response) {
+    private void sendResponseToKafka(String response) {
         kafkaTemplate.send("test-topic-sb", response);
         System.out.println("Sending response to kafka topic");
     }
