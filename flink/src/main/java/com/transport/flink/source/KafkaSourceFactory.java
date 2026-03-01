@@ -1,6 +1,6 @@
 package com.transport.flink.source;
 
-import com.transport.flink.Bus;
+import com.transport.flink.process.Bus;
 import org.apache.flink.api.common.eventtime.WatermarkStrategy;
 import org.apache.flink.api.common.serialization.SimpleStringSchema;
 import org.apache.flink.connector.kafka.source.KafkaSource;
