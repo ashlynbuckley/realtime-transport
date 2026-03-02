@@ -1,0 +1,31 @@
+{
+  "type": "record",
+  "name": "AvroVehicleEvent",
+  "namespace": "com.fyp.avro",
+  "fields": [
+    {
+      "name": "tripId",
+      "type": "string"
+    },
+    {
+      "name": "startTime",
+      "type": "string"
+    },
+    {
+      "name": "startDate",
+      "type": "string"
+    },
+    {
+      "name": "scheduleRelationship",
+      "type": "string"
+    },
+    {
+      "name": "routeId",
+      "type": "string"
+    },
+    {
+      "name": "vehicleTimestamp",
+      "type": "string"
+    }
+  ]
+}

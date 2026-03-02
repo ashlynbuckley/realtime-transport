@@ -14,7 +14,7 @@ public class FlinkJob {
 
         //Source
         // TODO: Duplicate records needs to be handled
-        DataStream<Bus> busEvent = KafkaSourceFactory.createKafkaBusSource(env);
+//        DataStream<Bus> busEvent = KafkaSourceFactory.createKafkaBusSource(env);
         DataStream<String> kafkaStream = KafkaSourceFactory.createKafkaSource(env);
         //Print what we ingested for debugging
         kafkaStream.print();
