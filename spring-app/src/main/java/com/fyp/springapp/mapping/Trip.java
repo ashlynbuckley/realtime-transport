@@ -1,7 +1,9 @@
 package com.fyp.springapp.mapping;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class Trip {
     @JsonProperty("trip_id")
     private String tripId;

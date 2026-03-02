@@ -1,5 +1,8 @@
 package com.fyp.springapp.mapping;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class Vehicle {
     private Trip trip;
     private String timestamp;

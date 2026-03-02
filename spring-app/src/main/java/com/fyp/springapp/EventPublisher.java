@@ -21,7 +21,7 @@ public class EventPublisher {
     public void sendEventToKafka(VehicleEvent event) {
         AvroVehicleEvent avroEvent = serialiseEvent(event);
         kafkaTemplate.send(TOPIC, avroEvent);
-        System.out.println("Sending events to kafka topic");
+        System.out.println("Event sent to Kafka topic");
     }
 
     private AvroVehicleEvent serialiseEvent(VehicleEvent event) {
@@ -30,11 +30,11 @@ public class EventPublisher {
                 .setStartTime(event.getStartTime())
                 .setStartDate(event.getStartDate())
                 .setScheduleRelationship(event.getScheduleRelationship())
+                .setRouteId(event.getRouteId())
                 .setVehicleTimestamp(event.getVehicleTimestamp())
                 .build();
 
         System.out.println("Serialised");
-
         return avroEvent;
     }
 }

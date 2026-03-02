@@ -1,11 +1,13 @@
 package com.fyp.springapp;
 
 import com.fyp.springapp.mapping.VehicleEvent;
+import org.springframework.stereotype.Service;
 
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+@Service
 public class FilterEventsService {
     Set<String> TRACKED_ROUTES;
 

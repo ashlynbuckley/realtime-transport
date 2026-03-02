@@ -1,25 +1,27 @@
 package com.fyp.springapp.mapping;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import tools.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 
 import java.util.ArrayList;
 import java.util.List;
 
 @Service
 public class VehicleEventMapper {
-    private ObjectMapper objectMapper;
+    private final ObjectMapper objectMapper;
 
-    public VehicleEventMapper() {
-        ObjectMapper objectMapper = new ObjectMapper();
+    public VehicleEventMapper(ObjectMapper objectMapper) {
+        this.objectMapper = objectMapper;
     }
 
     //Called by PollingService
-    public List<VehicleEvent> mapJsonBodyToPojo(String jsonBody) {
-        VehicleDTO vehicleDTO = objectMapper.convertValue(jsonBody, VehicleDTO.class);
+    public List<VehicleEvent> mapJsonBodyToPojo(String jsonBody) throws JsonProcessingException {
+        VehicleDTO vehicleDTO = objectMapper.readValue(jsonBody, VehicleDTO.class);
         //DTO -> POJO
-        List<VehicleEvent> events = mapDtoToPojo(vehicleDTO);
-        return events;
+        return mapDtoToPojo(vehicleDTO);
     }
 
     private List<VehicleEvent> mapDtoToPojo(VehicleDTO vehicleDTO) {
