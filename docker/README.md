@@ -18,6 +18,9 @@ Each time you start the containers, you will have to configure some things. Firs
 To enter the Kafka terminal, do:
 `docker exec -it -w /opt/kafka/bin broker sh`
 
+for confluent kafka image:
+`docker exec -it broker sh`
+
 You should see `/opt/kafka/bin $`
 
 Next, create the topic, type:
@@ -25,7 +28,7 @@ Next, create the topic, type:
 ```
 ./kafka-topics.sh \
   --create \
-  --topic test-topic \
+  --topic test-topic-sb \
   --bootstrap-server localhost:9092 \
   --partitions 1 \
   --replication-factor 1
