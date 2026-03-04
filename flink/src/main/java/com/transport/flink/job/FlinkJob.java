@@ -1,5 +1,6 @@
 package com.transport.flink.job;
 
+import com.transport.flink.process.Bus;
 import com.transport.flink.source.KafkaSourceFactory;
 import com.transport.flink.sink.MySQLSinkFactory;
 import org.apache.flink.streaming.api.datastream.DataStream;
@@ -13,6 +14,7 @@ public class FlinkJob {
 
         //Source
         // TODO: Duplicate records needs to be handled
+//        DataStream<Bus> busEvent = KafkaSourceFactory.createKafkaBusSource(env);
         DataStream<String> kafkaStream = KafkaSourceFactory.createKafkaSource(env);
         //Print what we ingested for debugging
         kafkaStream.print();

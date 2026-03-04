@@ -1,5 +1,6 @@
 package com.transport.flink.source;
 
+import com.transport.flink.process.Bus;
 import org.apache.flink.api.common.eventtime.WatermarkStrategy;
 import org.apache.flink.api.common.serialization.SimpleStringSchema;
 import org.apache.flink.connector.kafka.source.KafkaSource;
@@ -24,4 +25,20 @@ public class KafkaSourceFactory {
                 "Kafka Source"
         );
     }
+
+//    public static DataStream<Bus> createKafkaBusSource(StreamExecutionEnvironment env) {
+//        KafkaSource<String> source = KafkaSource.<String>builder()
+//                .setBootstrapServers("localhost:9092") //kafka broker sending through here
+//                .setTopics("test-topic-sb")
+//                .setGroupId("flink-test-group")
+//                .setStartingOffsets(OffsetsInitializer.earliest())
+//                .setValueOnlyDeserializer(new SimpleStringSchema())
+//                .build();
+//
+//        return env.fromSource(
+//                source,
+//                WatermarkStrategy.noWatermarks(),
+//                "Kafka Source"
+//        );
+//    }
 }
