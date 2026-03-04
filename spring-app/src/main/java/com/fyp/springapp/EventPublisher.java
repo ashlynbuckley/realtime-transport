@@ -35,6 +35,7 @@ public class EventPublisher {
                 .build();
 
         System.out.println("Serialised");
+        //Returns a SpecificRecord
         return avroEvent;
     }
 }
