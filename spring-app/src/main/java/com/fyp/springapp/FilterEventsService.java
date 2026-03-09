@@ -1,6 +1,6 @@
 package com.fyp.springapp;
 
-import com.fyp.springapp.mapping.VehicleEvent;
+import com.fyp.springapp.mapping.vehicle.VehicleEvent;
 import org.springframework.stereotype.Service;
 
 import java.util.HashSet;

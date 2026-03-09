@@ -1,6 +1,4 @@
-package com.fyp.springapp.mapping;
-
-import com.fasterxml.jackson.annotation.JsonProperty;
+package com.fyp.springapp.mapping.vehicle;
 
 /**
  * Internal representation of vehicle events
@@ -13,7 +11,8 @@ public class VehicleEvent{
     private String routeId;
     private String vehicleTimestamp;
 
-    public VehicleEvent(String tripId, String startTime, String startDate, String scheduleRelationship, String routeId, String vehicleTimestamp) {
+    public VehicleEvent(String tripId, String startTime, String startDate, String scheduleRelationship,
+                        String routeId, String vehicleTimestamp) {
         this.tripId = tripId;
         this.startTime = startTime;
         this.startDate = startDate;

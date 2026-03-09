@@ -56,3 +56,18 @@ services:
       SCHEMA_REGISTRY_HOST_NAME: schema-registry
       SCHEMA_REGISTRY_KAFKASTORE_BOOTSTRAP_SERVERS: PLAINTEXT://broker:9092
       SCHEMA_REGISTRY_LISTENERS: http://0.0.0.0:8081
+
+  druid:
+    image: apache/druid:latest
+    container_name: druid
+    ports:
+      - "8888:8888" # Router/query UI
+      - "8081:8081" # Coordinator
+      - "8082:8082" # Broker
+    environment:
+      DRUID_MAXDIRECTMEMORYSIZE: 6g
+      DRUID_XMX: 2g
+      JAVA_OPTS: "-server -XX:+UseG1GC"
+    volumes:
+      - ./druid/conf:/druid/conf # Used for putting config for druid in for docker
+      - ./druid/segments:/var/druid/segments #for configuring deep storage, flink will put stuff in /druid/segments

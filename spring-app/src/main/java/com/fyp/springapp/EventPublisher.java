@@ -1,7 +1,7 @@
 package com.fyp.springapp;
 
 import com.fyp.avro.AvroVehicleEvent;
-import com.fyp.springapp.mapping.VehicleEvent;
+import com.fyp.springapp.mapping.vehicle.VehicleEvent;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Service;

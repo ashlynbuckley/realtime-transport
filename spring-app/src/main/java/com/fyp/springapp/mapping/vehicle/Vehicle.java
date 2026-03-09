@@ -1,6 +1,7 @@
-package com.fyp.springapp.mapping;
+package com.fyp.springapp.mapping.vehicle;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fyp.springapp.mapping.Trip;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Vehicle {

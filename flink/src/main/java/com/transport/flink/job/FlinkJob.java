@@ -1,8 +1,8 @@
 package com.transport.flink.job;
 
 import com.fyp.avro.AvroVehicleEvent;
+import com.transport.flink.sink.KafkaSinkFactory;
 import com.transport.flink.source.KafkaSourceFactory;
-import com.transport.flink.sink.MySQLSinkFactory;
 import org.apache.flink.streaming.api.datastream.DataStream;
 import org.apache.flink.streaming.api.environment.StreamExecutionEnvironment;
 
@@ -15,16 +15,17 @@ public class FlinkJob {
         //Source
         // TODO: Duplicate records needs to be handled
         DataStream<AvroVehicleEvent> kafkaStream = KafkaSourceFactory.createKafkaSource(env);
+
         if (kafkaStream != null) {
-            System.out.println("Stream is not null");
             parseRouteIds(kafkaStream);
+            //Sink
+            kafkaStream.addSink(KafkaSinkFactory.configureKafkaSink());
         }
-//        parseRouteIds(kafkaStream);
-        //Sink
-//        kafkaStream.addSink(MySQLSinkFactory.configureSink());
+        else {
+            System.out.println("Stream is null");
+        }
 
         env.execute("Process Messages");
-
     }
 
     private static void parseRouteIds(DataStream<AvroVehicleEvent> kafkaStream) {
