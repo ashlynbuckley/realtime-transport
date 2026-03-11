@@ -1,5 +1,7 @@
 package com.fyp.springapp.mapping.tripupdate;
 
+import java.util.List;
+
 public class TripUpdateEvent {
     //TODO: will most likely trim this down once i know what i dont need bc it's already in VehicleEvent
     private String tripId;
@@ -9,25 +11,17 @@ public class TripUpdateEvent {
     private String scheduleRelationship;
     private String routeId;
     private String tripUpdateTimestamp;
-    private String stopSequence;
-    private int delay;
-    private String stopId;
-    //from stop_time_update - changes are reflected in this one
-    private String stopTimeUpdateScheduleRelationship;
+    private List<StopTimeUpdatePOJO> updates;
 
     public TripUpdateEvent(String tripId, String startTime, String startDate, String scheduleRelationship,
-                           String routeId, String tripUpdateTimestamp, String stopSequence, int delay,
-                           String stopId, String stopTimeUpdateScheduleRelationship) {
+                           String routeId, String tripUpdateTimestamp, List<StopTimeUpdatePOJO> updates) {
         this.tripId = tripId;
         this.startTime = startTime;
         this.startDate = startDate;
         this.scheduleRelationship = scheduleRelationship;
         this.routeId = routeId;
         this.tripUpdateTimestamp = tripUpdateTimestamp;
-        this.stopSequence = stopSequence;
-        this.delay = delay;
-        this.stopId = stopId;
-        this.stopTimeUpdateScheduleRelationship = stopTimeUpdateScheduleRelationship;
+        this.updates = updates;
 
     }
     public String getTripId() {
@@ -72,28 +66,10 @@ public class TripUpdateEvent {
         this.tripUpdateTimestamp = tripUpdateTimestamp;
     }
 
-    public String getStopSequence() {
-        return stopSequence;
+    public List<StopTimeUpdatePOJO> getUpdates() {
+        return updates;
     }
-    public void setStopSequence(String stopSequence) {
-        this.stopSequence = stopSequence;
-    }
-    public int getDelay() {
-        return delay;
-    }
-    public void setDelay(int delay) {
-        this.delay = delay;
-    }
-    public String getStopId() {
-        return stopId;
-    }
-    public void setStopId(String stopId) {
-        this.stopId = stopId;
-    }
-    public String getStopTimeUpdateScheduleRelationship() {
-        return stopTimeUpdateScheduleRelationship;
-    }
-    public void setStopTimeUpdateScheduleRelationship(String stopTimeUpdateScheduleRelationship) {
-        this.stopTimeUpdateScheduleRelationship = stopTimeUpdateScheduleRelationship;
+    public void setUpdates(List<StopTimeUpdatePOJO> updates) {
+        this.updates = updates;
     }
 }

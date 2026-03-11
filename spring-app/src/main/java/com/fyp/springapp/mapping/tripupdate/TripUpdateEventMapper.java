@@ -33,7 +33,25 @@ public class TripUpdateEventMapper {
     }
 
     private TripUpdateEvent mapEntityToEvent(TripUpdateEntity entity) {
-        //Using getters and setters to move the data over - doing this to separate the internal and external representations of my VehicleEvents
+        List<StopTimeUpdatePOJO> pojoUpdates = new ArrayList<>();
+        //make list of the stop_time_updates
+        for (StopTimeUpdate update : entity.getTripUpdate().getStopTimeUpdate()) {
+            Integer departureDelay = update.getDeparture() != null
+                    ? update.getDeparture().getDepartureDelay()
+                    : null;
+            Integer arrivalDelay = update.getArrival() != null
+                    ? update.getArrival().getArrivalDelay()
+                    : null;
+            StopTimeUpdatePOJO pojoUpdate = new StopTimeUpdatePOJO(
+                    update.getStopSequence(),
+                    departureDelay,
+                    arrivalDelay,
+                    update.getStopId(),
+                    update.getScheduleRelationship()
+            );
+            pojoUpdates.add(pojoUpdate);
+        }
+
         return new TripUpdateEvent(
                 entity.getTripUpdate().getTrip().getTripId(),
                 entity.getTripUpdate().getTrip().getStartTime(),
@@ -41,11 +59,7 @@ public class TripUpdateEventMapper {
                 entity.getTripUpdate().getTrip().getScheduleRelationship(),
                 entity.getTripUpdate().getTrip().getRouteId(),
                 entity.getTripUpdate().getTripUpdateTimestamp(),
-                //do another loop
-                for (StopTimeUpdate stopTimeUpdateItem : entity.getTripUpdate().getStopTimeUpdate()) {
-                  StopTimeUpdate stopTimeUpdateEntity = new StopTimeUpdate()
-                }
-                entity.getTripUpdate().getStopTimeUpdate().getStopSequence(),
+                pojoUpdates
         );
     }
 }

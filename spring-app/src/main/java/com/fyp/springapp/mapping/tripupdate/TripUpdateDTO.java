@@ -1,11 +1,15 @@
 package com.fyp.springapp.mapping.tripupdate;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fyp.springapp.mapping.Header;
 
 import java.util.List;
 
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class TripUpdateDTO {
     private Header header;
+    @JsonProperty("entity")
     private List<TripUpdateEntity> entities;
 
     public Header getHeader() {

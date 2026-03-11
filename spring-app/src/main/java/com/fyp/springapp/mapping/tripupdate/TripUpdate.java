@@ -1,13 +1,17 @@
 package com.fyp.springapp.mapping.tripupdate;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fyp.springapp.mapping.Trip;
 
+import java.util.ArrayList;
 import java.util.List;
 
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class TripUpdate {
     private Trip trip;
-    private List<StopTimeUpdate> stopTimeUpdate;
+    @JsonProperty("stop_time_update")
+    private List<StopTimeUpdate> stopTimeUpdate = new ArrayList<>();
     @JsonProperty("timestamp")
     private String tripUpdateTimestamp;
 

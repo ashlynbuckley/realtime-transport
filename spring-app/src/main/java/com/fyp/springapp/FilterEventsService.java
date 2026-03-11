@@ -1,5 +1,6 @@
 package com.fyp.springapp;
 
+import com.fyp.springapp.mapping.tripupdate.TripUpdateEvent;
 import com.fyp.springapp.mapping.vehicle.VehicleEvent;
 import org.springframework.stereotype.Service;
 
@@ -25,7 +26,15 @@ public class FilterEventsService {
         TRACKED_ROUTES.add("5421_116111"); //412
     }
 
-    public List<VehicleEvent> filterEvents(List<VehicleEvent> events) {
+    public List<VehicleEvent> filterVehicleEvents(List<VehicleEvent> events) {
+        return events.stream()
+                .filter(event ->
+                        TRACKED_ROUTES.contains(event.getRouteId())
+                )
+                .toList();
+    }
+
+    public List<TripUpdateEvent> filterTripUpdateEvents(List<TripUpdateEvent> events) {
         return events.stream()
                 .filter(event ->
                         TRACKED_ROUTES.contains(event.getRouteId())

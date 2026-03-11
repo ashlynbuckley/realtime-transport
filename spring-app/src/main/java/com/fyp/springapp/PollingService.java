@@ -1,7 +1,6 @@
 package com.fyp.springapp;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fyp.springapp.mapping.tripupdate.TripUpdate;
 import com.fyp.springapp.mapping.tripupdate.TripUpdateEvent;
 import com.fyp.springapp.mapping.tripupdate.TripUpdateEventMapper;
 import com.fyp.springapp.mapping.vehicle.VehicleEvent;
@@ -23,7 +22,6 @@ class PollingService {
     private final String tripUpdatePath = "/gtfsr/v2/TripUpdates";
     private final int realTimePollInterval = 30000;
 
-
     public PollingService(WebClient webClient, VehicleEventMapper vehicleEventMapper, TripUpdateEventMapper tripUpdateEventMapper, FilterEventsService filterEventsService, EventPublisher eventPublisher) {
         this.webClient = webClient;
         this.vehicleEventMapper = vehicleEventMapper;
@@ -32,30 +30,30 @@ class PollingService {
         this.eventPublisher = eventPublisher;
     }
 
-    @Scheduled(fixedRate = realTimePollInterval)
-    public void sendReqToGtfsVehicle() throws JsonProcessingException {
-        String response = webClient.get()
-                .uri(uriBuilder ->
-                        uriBuilder
-                                .path(vehiclesPath)
-                                .queryParam("format","json")
-                                .build()
-                )
-                .header("Ocp-Apim-Subscription-Key", "7af5d298206b4bfc8d205beb38fb5d9d")
-                .header("Cache-Control", "no-cache")
-                .header("x-api-key","ae1a643563654b2cac3dc2ac307a068d")
-                .retrieve()
-                .bodyToMono(String.class)
-                .block();
-
-        List<VehicleEvent> events = vehicleEventMapper.mapJsonBodyToPojo(response);
-        List<VehicleEvent> filteredEvents = filterEventsService.filterEvents(events);
-
-        for (VehicleEvent event : filteredEvents) {
-            System.out.println(event);
-            eventPublisher.sendEventToKafka(event);
-        }
-    }
+//    @Scheduled(fixedRate = realTimePollInterval)
+//    public void sendReqToGtfsVehicle() throws JsonProcessingException {
+//        String response = webClient.get()
+//                .uri(uriBuilder ->
+//                        uriBuilder
+//                                .path(vehiclesPath)
+//                                .queryParam("format","json")
+//                                .build()
+//                )
+//                .header("Ocp-Apim-Subscription-Key", "7af5d298206b4bfc8d205beb38fb5d9d")
+//                .header("Cache-Control", "no-cache")
+//                .header("x-api-key","ae1a643563654b2cac3dc2ac307a068d")
+//                .retrieve()
+//                .bodyToMono(String.class)
+//                .block();
+//
+//        List<VehicleEvent> events = vehicleEventMapper.mapJsonBodyToPojo(response);
+//        List<VehicleEvent> filteredEvents = filterEventsService.filterVehicleEvents(events);
+//
+//        for (VehicleEvent event : filteredEvents) {
+//            System.out.println(event);
+//            eventPublisher.sendEventToKafka(event);
+//        }
+//    }
 
     @Scheduled(fixedRate = realTimePollInterval)
     public void sendReqToGtfsTripUpdates() throws JsonProcessingException {
@@ -74,11 +72,11 @@ class PollingService {
                 .block();
 
         List<TripUpdateEvent> events = tripUpdateEventMapper.mapJsonBodyToPojo(response);
-//        List<TripUpdate> filteredEvents = filterEventsService.filterEvents(events);
+        List<TripUpdateEvent> filteredEvents = filterEventsService.filterTripUpdateEvents(events);
 
-//        for (VehicleEvent event : filteredEvents) {
-//            System.out.println(event);
+        for (TripUpdateEvent event : filteredEvents) {
+            System.out.println(event);
 //            eventPublisher.sendEventToKafka(event);
-//        }
+        }
     }
 }

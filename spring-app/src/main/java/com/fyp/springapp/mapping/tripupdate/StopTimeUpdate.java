@@ -5,7 +5,10 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 public class StopTimeUpdate {
     @JsonProperty("stop_sequence")
     private String stopSequence;
+    @JsonProperty("arrival")
     private Arrival arrival;
+    @JsonProperty("departure")
+    private Departure departure;
     @JsonProperty("stop_id")
     private String stopId;
     @JsonProperty("schedule_relationship")
@@ -22,6 +25,12 @@ public class StopTimeUpdate {
     }
     public void setArrival(Arrival arrival) {
         this.arrival = arrival;
+    }
+    public Departure getDeparture() {
+        return departure;
+    }
+    public void setDeparture(Departure departure) {
+        this.departure = departure;
     }
     public String getStopId() {
         return stopId;
