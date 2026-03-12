@@ -21,16 +21,16 @@ public class StopTimeUpdatePOJO {
     public void setStopSequence(String stopSequence) {
         this.stopSequence = stopSequence;
     }
-    public int getaDelay() {
+    public Integer getaDelay() {
         return aDelay;
     }
-    public void setaDelay(int aDelay) {
+    public void setaDelay(Integer aDelay) {
         this.aDelay = aDelay;
     }
-    public int getdDelay() {
+    public Integer getdDelay() {
         return dDelay;
     }
-    public void setdDelay(int dDelay) {
+    public void setdDelay(Integer dDelay) {
         this.dDelay = dDelay;
     }
     public String getStopId() {

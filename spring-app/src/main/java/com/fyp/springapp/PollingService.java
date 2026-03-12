@@ -17,43 +17,45 @@ class PollingService {
     private final VehicleEventMapper vehicleEventMapper;
     private final TripUpdateEventMapper tripUpdateEventMapper;
     private final FilterEventsService filterEventsService;
-    private final EventPublisher eventPublisher;
+    private final VehicleEventPublisher vehicleEventPublisher;
+    private final TripUpdateEventPublisher tripUpdateEventPublisher;
     private final String vehiclesPath = "/gtfsr/v2/Vehicles";
     private final String tripUpdatePath = "/gtfsr/v2/TripUpdates";
     private final int realTimePollInterval = 30000;
 
-    public PollingService(WebClient webClient, VehicleEventMapper vehicleEventMapper, TripUpdateEventMapper tripUpdateEventMapper, FilterEventsService filterEventsService, EventPublisher eventPublisher) {
+    public PollingService(WebClient webClient, VehicleEventMapper vehicleEventMapper, TripUpdateEventMapper tripUpdateEventMapper, FilterEventsService filterEventsService, VehicleEventPublisher eventPublisher, TripUpdateEventPublisher tripEventPublisher) {
         this.webClient = webClient;
         this.vehicleEventMapper = vehicleEventMapper;
         this.tripUpdateEventMapper = tripUpdateEventMapper;
         this.filterEventsService = filterEventsService;
-        this.eventPublisher = eventPublisher;
+        this.vehicleEventPublisher = eventPublisher;
+        this.tripUpdateEventPublisher = tripEventPublisher;
     }
 
-//    @Scheduled(fixedRate = realTimePollInterval)
-//    public void sendReqToGtfsVehicle() throws JsonProcessingException {
-//        String response = webClient.get()
-//                .uri(uriBuilder ->
-//                        uriBuilder
-//                                .path(vehiclesPath)
-//                                .queryParam("format","json")
-//                                .build()
-//                )
-//                .header("Ocp-Apim-Subscription-Key", "7af5d298206b4bfc8d205beb38fb5d9d")
-//                .header("Cache-Control", "no-cache")
-//                .header("x-api-key","ae1a643563654b2cac3dc2ac307a068d")
-//                .retrieve()
-//                .bodyToMono(String.class)
-//                .block();
-//
-//        List<VehicleEvent> events = vehicleEventMapper.mapJsonBodyToPojo(response);
-//        List<VehicleEvent> filteredEvents = filterEventsService.filterVehicleEvents(events);
-//
-//        for (VehicleEvent event : filteredEvents) {
-//            System.out.println(event);
-//            eventPublisher.sendEventToKafka(event);
-//        }
-//    }
+    @Scheduled(fixedRate = realTimePollInterval)
+    public void sendReqToGtfsVehicle() throws JsonProcessingException {
+        String response = webClient.get()
+                .uri(uriBuilder ->
+                        uriBuilder
+                                .path(vehiclesPath)
+                                .queryParam("format","json")
+                                .build()
+                )
+                .header("Ocp-Apim-Subscription-Key", "7af5d298206b4bfc8d205beb38fb5d9d")
+                .header("Cache-Control", "no-cache")
+                .header("x-api-key","ae1a643563654b2cac3dc2ac307a068d")
+                .retrieve()
+                .bodyToMono(String.class)
+                .block();
+
+        List<VehicleEvent> events = vehicleEventMapper.mapJsonBodyToPojo(response);
+        List<VehicleEvent> filteredEvents = filterEventsService.filterVehicleEvents(events);
+
+        for (VehicleEvent event : filteredEvents) {
+            System.out.println(event);
+            vehicleEventPublisher.sendVehicleEventToKafka(event);
+        }
+    }
 
     @Scheduled(fixedRate = realTimePollInterval)
     public void sendReqToGtfsTripUpdates() throws JsonProcessingException {
@@ -75,8 +77,7 @@ class PollingService {
         List<TripUpdateEvent> filteredEvents = filterEventsService.filterTripUpdateEvents(events);
 
         for (TripUpdateEvent event : filteredEvents) {
-            System.out.println(event);
-//            eventPublisher.sendEventToKafka(event);
+            tripUpdateEventPublisher.sendTripUpdateEventToKafka(event);
         }
     }
 }

@@ -34,7 +34,7 @@ public class TripUpdateEventMapper {
 
     private TripUpdateEvent mapEntityToEvent(TripUpdateEntity entity) {
         List<StopTimeUpdatePOJO> pojoUpdates = new ArrayList<>();
-        //make list of the stop_time_updates
+        //Make list of the stop_time_updates
         for (StopTimeUpdate update : entity.getTripUpdate().getStopTimeUpdate()) {
             Integer departureDelay = update.getDeparture() != null
                     ? update.getDeparture().getDepartureDelay()

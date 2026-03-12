@@ -1,0 +1,49 @@
+{
+  "type": "record",
+  "name": "AvroTripUpdateEvent",
+  "namespace": "com.fyp.avro",
+  "fields": [
+    {
+      "name": "tripId",
+      "type": "string"
+    },
+    {
+      "name": "startTime",
+      "type": "string"
+    },
+    {
+      "name": "startDate",
+      "type": "string"
+    },
+    {
+      "name": "scheduleRelationship",
+      "type": "string"
+    },
+    {
+      "name": "routeId",
+      "type": "string"
+    },
+    {
+      "name": "tripUpdateTimestamp",
+      "type": "string"
+    },
+
+    {
+      "name": "stopTimeUpdates",
+      "type": {
+        "type": "array",
+        "items": {
+          "type": "record",
+          "name": "AvroStopTimeUpdate",
+          "fields": [
+            { "name": "stopSequence", "type": "string" },
+            { "name": "aDelay", "type": ["null", "int"], "default": null },
+            { "name": "dDelay", "type": ["null", "int"], "default": null },
+            { "name": "stopId", "type": "string" },
+            { "name": "stopTimeUpdateScheduleRelationship", "type": ["null","string"], "default": null }
+          ]
+        }
+      }
+    }
+  ]
+}

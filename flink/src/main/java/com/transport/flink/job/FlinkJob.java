@@ -12,18 +12,18 @@ public class FlinkJob {
         StreamExecutionEnvironment env = StreamExecutionEnvironment.getExecutionEnvironment();
         System.out.println("Flink Job Started");
 
-        //Source
-        // TODO: Duplicate records needs to be handled
-        DataStream<AvroVehicleEvent> kafkaStream = KafkaSourceFactory.createKafkaSource(env);
-
-        if (kafkaStream != null) {
-            parseRouteIds(kafkaStream);
-            //Sink
-            kafkaStream.addSink(KafkaSinkFactory.configureKafkaSink());
-        }
-        else {
-            System.out.println("Stream is null");
-        }
+//        //Source
+//        // TODO: Duplicate records needs to be handled
+//        DataStream<AvroVehicleEvent> kafkaStream = KafkaSourceFactory.createKafkaSource(env);
+//
+//        if (kafkaStream != null) {
+//            parseRouteIds(kafkaStream);
+//            //Sink
+//            kafkaStream.addSink(KafkaSinkFactory.configureKafkaSink());
+//        }
+//        else {
+//            System.out.println("Stream is null");
+//        }
 
         env.execute("Process Messages");
     }

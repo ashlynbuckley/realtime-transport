@@ -70,4 +70,4 @@ services:
       JAVA_OPTS: "-server -XX:+UseG1GC"
     volumes:
       - ./druid/conf:/druid/conf # Used for putting config for druid in for docker
-      - ./druid/segments:/var/druid/segments #for configuring deep storage, flink will put stuff in /druid/segments
+      - ./druid/segments:/var/druid/segments # For configuring deep storage, flink will put stuff in /druid/segments
