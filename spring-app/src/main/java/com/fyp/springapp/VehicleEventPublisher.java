@@ -12,7 +12,6 @@ public class VehicleEventPublisher {
     @Autowired
     private final KafkaTemplate<String, com.fyp.avro.AvroVehicleEvent> kafkaTemplate;
 
-    private static final String TOPIC = "test-topic-sb";
     private static final String VEHICLE_TOPIC = "vehicle-topic";
 
     public VehicleEventPublisher(KafkaTemplate<String, AvroVehicleEvent> kafkaTemplate) {

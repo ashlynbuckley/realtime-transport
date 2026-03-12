@@ -1,6 +1,7 @@
 package com.transport.flink.source;
 
 import com.fyp.avro.AvroVehicleEvent;
+import org.apache.avro.specific.SpecificRecord;
 import org.apache.flink.api.common.eventtime.WatermarkStrategy;
 import org.apache.flink.connector.kafka.source.KafkaSource;
 import org.apache.flink.connector.kafka.source.enumerator.initializer.OffsetsInitializer;
@@ -10,15 +11,18 @@ import org.apache.flink.streaming.api.environment.StreamExecutionEnvironment;
 
 public class KafkaSourceFactory {
 
-    public static DataStream<AvroVehicleEvent> createKafkaSource(StreamExecutionEnvironment env) {
-        KafkaSource<AvroVehicleEvent> source = KafkaSource.<AvroVehicleEvent>builder()
+    private static final String TRIP_TOPIC = "trip-update-topic";
+    private static final String VEHICLE_TOPIC = "vehicle-topic";
+    public static <T extends SpecificRecord> DataStream<T> createKafkaSource(StreamExecutionEnvironment env, String topic,
+                                                                                            String groupId, Class<T> avroClass) {
+        KafkaSource<T> source = KafkaSource.<T>builder()
                 .setBootstrapServers("localhost:29092") //kafka broker sending through here
-                .setTopics("test-topic-sb")
-                .setGroupId("flink-test-group")
+                .setTopics(topic)
+                .setGroupId(groupId)
                 .setStartingOffsets(OffsetsInitializer.earliest())
                 .setValueOnlyDeserializer(
                         ConfluentRegistryAvroDeserializationSchema
-                                .forSpecific(AvroVehicleEvent.class, "http://localhost:8081")
+                                .forSpecific(avroClass, "http://localhost:8081")
                 )
                 .build();
 
