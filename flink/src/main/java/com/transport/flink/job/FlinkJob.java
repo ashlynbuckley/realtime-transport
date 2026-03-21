@@ -2,10 +2,17 @@ package com.transport.flink.job;
 
 import com.fyp.avro.AvroTripUpdateEvent;
 import com.fyp.avro.AvroVehicleEvent;
+import com.transport.flink.process.DelayObservation;
 import com.transport.flink.sink.KafkaSinkFactory;
 import com.transport.flink.source.KafkaSourceFactory;
+import org.apache.flink.api.common.functions.FlatMapFunction;
 import org.apache.flink.streaming.api.datastream.DataStream;
+import org.apache.flink.streaming.api.datastream.KeyedStream;
+import org.apache.flink.streaming.api.datastream.WindowedStream;
 import org.apache.flink.streaming.api.environment.StreamExecutionEnvironment;
+import org.apache.flink.streaming.api.windowing.assigners.TumblingEventTimeWindows;
+import org.apache.flink.streaming.api.windowing.time.Time;
+import org.apache.flink.streaming.api.windowing.windows.TimeWindow;
 
 public class FlinkJob {
     public static void main(String[] args) throws Exception {
@@ -38,7 +45,22 @@ public class FlinkJob {
             System.out.println("Trip update stream is null");
         }
 
-        env.execute("Process Messages");
+        assert kafkaTripUpdateStream != null;
+
+        //Flatten stream
+        DataStream<DelayObservation> delayStream = flattenStopTimeUpdates(kafkaTripUpdateStream);
+
+        //Aggregate metrics
+        KeyedStream<DelayObservation, String> keyedByRouteId =
+                delayStream.keyBy(DelayObservation::getRouteId);
+
+        //fine granularity - 5mins
+        keyedByRouteId
+                .window(TumblingEventTimeWindows.of(Time.minutes(5)))
+                .aggregate()
+                .addSink();
+
+        env.execute("Transport-metrics");
     }
     //for testing
     private static void parseRouteIds(DataStream<AvroVehicleEvent> kafkaStream) {
@@ -49,5 +71,9 @@ public class FlinkJob {
             return cs != null && cs.toString().equals("5401_126001");
         });
         parsedRoute.print();
+    }
+
+    private static DataStream<DelayObservation> flattenStopTimeUpdates(DataStream<AvroTripUpdateEvent> inputStream) {
+        return inputStream.flatMap(new FlatMapFunction<AvroTripUpdateEvent, DelayObservation>() {})
     }
 }
