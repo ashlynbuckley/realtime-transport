@@ -1,0 +1,59 @@
+{
+  "type": "record",
+  "name": "AvroRouteMetric",
+  "namespace": "com.fyp.avro",
+  "fields": [
+    {
+      "name": "routeId",
+      "type": "string"
+    },
+    {
+      "name": "windowStart",
+      "type": "long"
+    },
+    {
+      "name": "windowEnd",
+      "type": "long"
+    },
+    {
+      "name": "delayCount",
+      "type": "long"
+    },
+    {
+      "name": "maxArrivalDelay",
+      "type": "long"
+    },
+    {
+      "name": "minArrivalDelay",
+      "type": "long"
+    },
+    {
+      "name": "maxDepartureDelay",
+      "type": "long"
+    },
+    {
+      "name": "minDepartureDelay",
+      "type": "long"
+    },
+    {
+      "name": "totalDepartureDelay",
+      "type": "long"
+    },
+    {
+      "name": "totalArrivalDelay",
+      "type": "long"
+    },
+    {
+      "name": "avgArrivalDelay",
+      "type": "double"
+    },
+    {
+      "name": "avgDepartureDelay",
+      "type": "double"
+    },
+    {
+      "name": "totalOverallDelay",
+      "type": "long"
+    }
+  ]
+}

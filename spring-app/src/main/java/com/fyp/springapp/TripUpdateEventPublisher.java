@@ -63,7 +63,6 @@ public class TripUpdateEventPublisher {
                 .build();
 
         //Returns a SpecificRecord
-        //System.out.println(avroEvent.toString());
         return avroEvent;
     }
 }

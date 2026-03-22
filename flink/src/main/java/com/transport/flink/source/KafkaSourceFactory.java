@@ -13,6 +13,7 @@ public class KafkaSourceFactory {
 
     private static final String TRIP_TOPIC = "trip-update-topic";
     private static final String VEHICLE_TOPIC = "vehicle-topic";
+
     public static <T extends SpecificRecord> DataStream<T> createKafkaSource(StreamExecutionEnvironment env, String topic,
                                                                                             String groupId, Class<T> avroClass) {
         KafkaSource<T> source = KafkaSource.<T>builder()
