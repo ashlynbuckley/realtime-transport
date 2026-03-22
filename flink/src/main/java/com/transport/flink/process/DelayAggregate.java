@@ -1,9 +1,10 @@
 package com.transport.flink.process;
 
-import com.fyp.avro.AvroTripUpdateEvent;
+import com.transport.flink.process.observation.DelayObservation;
+import com.transport.flink.process.observation.DelayType;
 import org.apache.flink.api.common.functions.AggregateFunction;
 
-public class DelayAggregate implements AggregateFunction<AvroTripUpdateEvent, DelayAccumulator, RouteMetric> {
+public class DelayAggregate implements AggregateFunction<DelayObservation, DelayAccumulator, DelayAccumulator> {
 
     @Override
     public DelayAccumulator createAccumulator() {
@@ -11,20 +12,41 @@ public class DelayAggregate implements AggregateFunction<AvroTripUpdateEvent, De
     }
 
     @Override
-    public DelayAccumulator add(AvroTripUpdateEvent avroTripUpdateEvent, DelayAccumulator delayAccumulator) {
-        return null;
+    public DelayAccumulator add(DelayObservation delayObservation, DelayAccumulator delayAccumulator) {
+        if (delayObservation.getDelayType() == DelayType.ARRIVAL) {
+            delayAccumulator.totalArrivalDelay += delayObservation.getDelay();
+            delayAccumulator.arrivalCount++;
+            delayAccumulator.minArrivalDelay = Math.min(delayAccumulator.minArrivalDelay, delayObservation.getDelay());
+            delayAccumulator.maxArrivalDelay = Math.max(delayAccumulator.maxArrivalDelay, delayObservation.getDelay());
+        }
+        else {
+            delayAccumulator.totalDepartureDelay += delayObservation.getDelay();
+            delayAccumulator.departureCount++;
+            delayAccumulator.minDepartureDelay = Math.min(delayAccumulator.minDepartureDelay, delayObservation.getDelay());
+            delayAccumulator.maxDepartureDelay = Math.max(delayAccumulator.maxDepartureDelay, delayObservation.getDelay());
+        }
+        return delayAccumulator;
     }
 
     @Override
-    public RouteMetric getResult(DelayAccumulator delayAccumulator) {
-        RouteMetric metric = new RouteMetric();
-        //TODO: Fill values
-        return metric;
+    public DelayAccumulator getResult(DelayAccumulator delayAccumulator) {
+        return delayAccumulator;
     }
 
     @Override
-    public DelayAccumulator merge(DelayAccumulator delayAccumulator, DelayAccumulator acc1) {
-        return null;
+    public DelayAccumulator merge(DelayAccumulator a, DelayAccumulator b) {
+
+        DelayAccumulator r = new DelayAccumulator();
+
+        r.arrivalCount = a.arrivalCount + b.arrivalCount;
+        r.departureCount = a.departureCount + b.departureCount;
+        r.totalArrivalDelay = a.totalArrivalDelay + b.totalArrivalDelay;
+        r.minArrivalDelay = a.minArrivalDelay + b.minArrivalDelay;
+        r.maxArrivalDelay = a.maxArrivalDelay + b.maxArrivalDelay;
+        r.minDepartureDelay = a.minDepartureDelay + b.minDepartureDelay;
+        r.maxDepartureDelay = a.maxDepartureDelay + b.maxDepartureDelay;
+
+        return r;
     }
 
 }

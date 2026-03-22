@@ -9,14 +9,13 @@ import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 @Service
 public class TripUpdateEventPublisher {
 
     @Autowired
-    private final KafkaTemplate<String, com.fyp.avro.AvroTripUpdateEvent> kafkaTemplate;
+    private final KafkaTemplate<String, AvroTripUpdateEvent> kafkaTemplate;
 
     private static final String TRIP_TOPIC = "trip-update-topic";
 

@@ -5,7 +5,6 @@
  */
 package com.fyp.avro;
 
-import org.apache.avro.generic.GenericArray;
 import org.apache.avro.specific.SpecificData;
 import org.apache.avro.util.Utf8;
 import org.apache.avro.message.BinaryMessageEncoder;
@@ -268,8 +267,8 @@ public class AvroTripUpdateEvent extends org.apache.avro.specific.SpecificRecord
    * Creates a new AvroTripUpdateEvent RecordBuilder.
    * @return A new AvroTripUpdateEvent RecordBuilder
    */
-  public static com.fyp.avro.AvroTripUpdateEvent.Builder newBuilder() {
-    return new com.fyp.avro.AvroTripUpdateEvent.Builder();
+  public static AvroTripUpdateEvent.Builder newBuilder() {
+    return new AvroTripUpdateEvent.Builder();
   }
 
   /**
@@ -277,11 +276,11 @@ public class AvroTripUpdateEvent extends org.apache.avro.specific.SpecificRecord
    * @param other The existing builder to copy.
    * @return A new AvroTripUpdateEvent RecordBuilder
    */
-  public static com.fyp.avro.AvroTripUpdateEvent.Builder newBuilder(com.fyp.avro.AvroTripUpdateEvent.Builder other) {
+  public static AvroTripUpdateEvent.Builder newBuilder(AvroTripUpdateEvent.Builder other) {
     if (other == null) {
-      return new com.fyp.avro.AvroTripUpdateEvent.Builder();
+      return new AvroTripUpdateEvent.Builder();
     } else {
-      return new com.fyp.avro.AvroTripUpdateEvent.Builder(other);
+      return new AvroTripUpdateEvent.Builder(other);
     }
   }
 
@@ -290,11 +289,11 @@ public class AvroTripUpdateEvent extends org.apache.avro.specific.SpecificRecord
    * @param other The existing instance to copy.
    * @return A new AvroTripUpdateEvent RecordBuilder
    */
-  public static com.fyp.avro.AvroTripUpdateEvent.Builder newBuilder(com.fyp.avro.AvroTripUpdateEvent other) {
+  public static AvroTripUpdateEvent.Builder newBuilder(AvroTripUpdateEvent other) {
     if (other == null) {
-      return new com.fyp.avro.AvroTripUpdateEvent.Builder();
+      return new AvroTripUpdateEvent.Builder();
     } else {
-      return new com.fyp.avro.AvroTripUpdateEvent.Builder(other);
+      return new AvroTripUpdateEvent.Builder(other);
     }
   }
 
@@ -322,7 +321,7 @@ public class AvroTripUpdateEvent extends org.apache.avro.specific.SpecificRecord
      * Creates a Builder by copying an existing Builder.
      * @param other The existing Builder to copy.
      */
-    private Builder(com.fyp.avro.AvroTripUpdateEvent.Builder other) {
+    private Builder(AvroTripUpdateEvent.Builder other) {
       super(other);
       if (isValidValue(fields()[0], other.tripId)) {
         this.tripId = data().deepCopy(fields()[0].schema(), other.tripId);
@@ -358,7 +357,7 @@ public class AvroTripUpdateEvent extends org.apache.avro.specific.SpecificRecord
      * Creates a Builder by copying an existing AvroTripUpdateEvent instance
      * @param other The existing instance to copy.
      */
-    private Builder(com.fyp.avro.AvroTripUpdateEvent other) {
+    private Builder(AvroTripUpdateEvent other) {
       super(SCHEMA$, MODEL$);
       if (isValidValue(fields()[0], other.tripId)) {
         this.tripId = data().deepCopy(fields()[0].schema(), other.tripId);
@@ -404,7 +403,7 @@ public class AvroTripUpdateEvent extends org.apache.avro.specific.SpecificRecord
       * @param value The value of 'tripId'.
       * @return This builder.
       */
-    public com.fyp.avro.AvroTripUpdateEvent.Builder setTripId(java.lang.CharSequence value) {
+    public AvroTripUpdateEvent.Builder setTripId(java.lang.CharSequence value) {
       validate(fields()[0], value);
       this.tripId = value;
       fieldSetFlags()[0] = true;
@@ -424,7 +423,7 @@ public class AvroTripUpdateEvent extends org.apache.avro.specific.SpecificRecord
       * Clears the value of the 'tripId' field.
       * @return This builder.
       */
-    public com.fyp.avro.AvroTripUpdateEvent.Builder clearTripId() {
+    public AvroTripUpdateEvent.Builder clearTripId() {
       tripId = null;
       fieldSetFlags()[0] = false;
       return this;
@@ -444,7 +443,7 @@ public class AvroTripUpdateEvent extends org.apache.avro.specific.SpecificRecord
       * @param value The value of 'startTime'.
       * @return This builder.
       */
-    public com.fyp.avro.AvroTripUpdateEvent.Builder setStartTime(java.lang.CharSequence value) {
+    public AvroTripUpdateEvent.Builder setStartTime(java.lang.CharSequence value) {
       validate(fields()[1], value);
       this.startTime = value;
       fieldSetFlags()[1] = true;
@@ -464,7 +463,7 @@ public class AvroTripUpdateEvent extends org.apache.avro.specific.SpecificRecord
       * Clears the value of the 'startTime' field.
       * @return This builder.
       */
-    public com.fyp.avro.AvroTripUpdateEvent.Builder clearStartTime() {
+    public AvroTripUpdateEvent.Builder clearStartTime() {
       startTime = null;
       fieldSetFlags()[1] = false;
       return this;
@@ -484,7 +483,7 @@ public class AvroTripUpdateEvent extends org.apache.avro.specific.SpecificRecord
       * @param value The value of 'startDate'.
       * @return This builder.
       */
-    public com.fyp.avro.AvroTripUpdateEvent.Builder setStartDate(java.lang.CharSequence value) {
+    public AvroTripUpdateEvent.Builder setStartDate(java.lang.CharSequence value) {
       validate(fields()[2], value);
       this.startDate = value;
       fieldSetFlags()[2] = true;
@@ -504,7 +503,7 @@ public class AvroTripUpdateEvent extends org.apache.avro.specific.SpecificRecord
       * Clears the value of the 'startDate' field.
       * @return This builder.
       */
-    public com.fyp.avro.AvroTripUpdateEvent.Builder clearStartDate() {
+    public AvroTripUpdateEvent.Builder clearStartDate() {
       startDate = null;
       fieldSetFlags()[2] = false;
       return this;
@@ -524,7 +523,7 @@ public class AvroTripUpdateEvent extends org.apache.avro.specific.SpecificRecord
       * @param value The value of 'scheduleRelationship'.
       * @return This builder.
       */
-    public com.fyp.avro.AvroTripUpdateEvent.Builder setScheduleRelationship(java.lang.CharSequence value) {
+    public AvroTripUpdateEvent.Builder setScheduleRelationship(java.lang.CharSequence value) {
       validate(fields()[3], value);
       this.scheduleRelationship = value;
       fieldSetFlags()[3] = true;
@@ -544,7 +543,7 @@ public class AvroTripUpdateEvent extends org.apache.avro.specific.SpecificRecord
       * Clears the value of the 'scheduleRelationship' field.
       * @return This builder.
       */
-    public com.fyp.avro.AvroTripUpdateEvent.Builder clearScheduleRelationship() {
+    public AvroTripUpdateEvent.Builder clearScheduleRelationship() {
       scheduleRelationship = null;
       fieldSetFlags()[3] = false;
       return this;
@@ -564,7 +563,7 @@ public class AvroTripUpdateEvent extends org.apache.avro.specific.SpecificRecord
       * @param value The value of 'routeId'.
       * @return This builder.
       */
-    public com.fyp.avro.AvroTripUpdateEvent.Builder setRouteId(java.lang.CharSequence value) {
+    public AvroTripUpdateEvent.Builder setRouteId(java.lang.CharSequence value) {
       validate(fields()[4], value);
       this.routeId = value;
       fieldSetFlags()[4] = true;
@@ -584,7 +583,7 @@ public class AvroTripUpdateEvent extends org.apache.avro.specific.SpecificRecord
       * Clears the value of the 'routeId' field.
       * @return This builder.
       */
-    public com.fyp.avro.AvroTripUpdateEvent.Builder clearRouteId() {
+    public AvroTripUpdateEvent.Builder clearRouteId() {
       routeId = null;
       fieldSetFlags()[4] = false;
       return this;
@@ -604,7 +603,7 @@ public class AvroTripUpdateEvent extends org.apache.avro.specific.SpecificRecord
       * @param value The value of 'tripUpdateTimestamp'.
       * @return This builder.
       */
-    public com.fyp.avro.AvroTripUpdateEvent.Builder setTripUpdateTimestamp(java.lang.CharSequence value) {
+    public AvroTripUpdateEvent.Builder setTripUpdateTimestamp(java.lang.CharSequence value) {
       validate(fields()[5], value);
       this.tripUpdateTimestamp = value;
       fieldSetFlags()[5] = true;
@@ -624,7 +623,7 @@ public class AvroTripUpdateEvent extends org.apache.avro.specific.SpecificRecord
       * Clears the value of the 'tripUpdateTimestamp' field.
       * @return This builder.
       */
-    public com.fyp.avro.AvroTripUpdateEvent.Builder clearTripUpdateTimestamp() {
+    public AvroTripUpdateEvent.Builder clearTripUpdateTimestamp() {
       tripUpdateTimestamp = null;
       fieldSetFlags()[5] = false;
       return this;
@@ -644,7 +643,7 @@ public class AvroTripUpdateEvent extends org.apache.avro.specific.SpecificRecord
       * @param value The value of 'stopTimeUpdates'.
       * @return This builder.
       */
-    public com.fyp.avro.AvroTripUpdateEvent.Builder setStopTimeUpdates(java.util.List<com.fyp.avro.AvroStopTimeUpdate> value) {
+    public AvroTripUpdateEvent.Builder setStopTimeUpdates(java.util.List<com.fyp.avro.AvroStopTimeUpdate> value) {
       validate(fields()[6], value);
       this.stopTimeUpdates = value;
       fieldSetFlags()[6] = true;
@@ -664,7 +663,7 @@ public class AvroTripUpdateEvent extends org.apache.avro.specific.SpecificRecord
       * Clears the value of the 'stopTimeUpdates' field.
       * @return This builder.
       */
-    public com.fyp.avro.AvroTripUpdateEvent.Builder clearStopTimeUpdates() {
+    public AvroTripUpdateEvent.Builder clearStopTimeUpdates() {
       stopTimeUpdates = null;
       fieldSetFlags()[6] = false;
       return this;
