@@ -69,6 +69,22 @@ public class FlinkJob {
                 .map(new MetricMapper())
                 .sinkTo(kafkaSink);
 
+        //medium granularity - 30mins
+        keyedByRouteId
+                .window(TumblingEventTimeWindows.of(Time.minutes(30)))
+                .aggregate(new DelayAggregate(),
+                        new DelayProcessWindowFunction())
+                .map(new MetricMapper())
+                .sinkTo(kafkaSink);
+
+        //coarse granularity - 1hr
+        keyedByRouteId
+                .window(TumblingEventTimeWindows.of(Time.hours(1)))
+                .aggregate(new DelayAggregate(),
+                        new DelayProcessWindowFunction())
+                .map(new MetricMapper())
+                .sinkTo(kafkaSink);
+
         env.execute("Transport-metrics");
     }
 
