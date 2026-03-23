@@ -1,10 +1,12 @@
 package com.transport.flink.job;
 
+import com.fyp.avro.AvroRouteMetric;
 import com.fyp.avro.AvroStopTimeUpdate;
 import com.fyp.avro.AvroTripUpdateEvent;
 import com.fyp.avro.AvroVehicleEvent;
 import com.transport.flink.process.DelayAggregate;
 import com.transport.flink.process.DelayProcessWindowFunction;
+import com.transport.flink.process.MetricMapper;
 import com.transport.flink.process.RouteMetric;
 import com.transport.flink.process.observation.DelayType;
 import com.transport.flink.sink.KafkaSinkFactory;
@@ -35,7 +37,7 @@ public class FlinkJob {
         DataStream<AvroTripUpdateEvent> kafkaTripUpdateStream = KafkaSourceFactory.createKafkaSource(env, TRIP_TOPIC, "flink-trip-update-group", AvroTripUpdateEvent.class);
 
         //Sink
-        KafkaSink<RouteMetric> kafkaSink = KafkaSinkFactory.configureKafkaSink();
+        KafkaSink<AvroRouteMetric> kafkaSink = KafkaSinkFactory.configureKafkaSink(env, ROUTE_METRIC_TOPIC);
 
         if (kafkaVehicleStream != null) {
             System.out.println("Vehicle stream created");
@@ -64,6 +66,7 @@ public class FlinkJob {
                 .window(TumblingEventTimeWindows.of(Time.minutes(5)))
                 .aggregate(new DelayAggregate(),
                         new DelayProcessWindowFunction())
+                .map(new MetricMapper())
                 .sinkTo(kafkaSink);
 
         env.execute("Transport-metrics");
