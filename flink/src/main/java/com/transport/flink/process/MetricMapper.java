@@ -1,6 +1,6 @@
 package com.transport.flink.process;
 
-import com.fyp.avro.AvroRouteMetric;
+import com.fyp.core.avro.AvroRouteMetric;
 import org.apache.flink.api.common.functions.MapFunction;
 
 public class MetricMapper implements MapFunction<RouteMetric, AvroRouteMetric> {

@@ -27,6 +27,12 @@
     </repositories>
 
     <dependencies>
+        <dependency>
+            <groupId>com.fyp.transport</groupId>
+            <artifactId>transport-core</artifactId>
+            <version>1.0-SNAPSHOT</version>
+            <scope>compile</scope>
+        </dependency>
         <!-- Flink -->
         <!-- https://mvnrepository.com/artifact/org.apache.flink/flink-java -->
         <dependency>
@@ -89,12 +95,6 @@
             <groupId>com.fyp</groupId>
             <artifactId>spring-app</artifactId>
             <version>0.0.1-SNAPSHOT</version>
-            <scope>compile</scope>
-        </dependency>
-        <dependency>
-            <groupId>com.fyp.transport</groupId>
-            <artifactId>transport-core</artifactId>
-            <version>1.0-SNAPSHOT</version>
             <scope>compile</scope>
         </dependency>
     </dependencies>

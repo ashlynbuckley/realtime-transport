@@ -1,7 +1,7 @@
 {
   "type": "record",
   "name": "AvroTripUpdateEvent",
-  "namespace": "com.fyp.avro",
+  "namespace": "com.fyp.core.avro",
   "fields": [
     {
       "name": "tripId",

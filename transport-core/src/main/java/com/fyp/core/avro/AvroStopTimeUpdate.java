@@ -3,7 +3,7 @@
  *
  * DO NOT EDIT DIRECTLY
  */
-package com.fyp.avro;
+package com.fyp.core.avro;
 
 import org.apache.avro.generic.GenericArray;
 import org.apache.avro.specific.SpecificData;
@@ -14,10 +14,10 @@ import org.apache.avro.message.SchemaStore;
 
 @org.apache.avro.specific.AvroGenerated
 public class AvroStopTimeUpdate extends org.apache.avro.specific.SpecificRecordBase implements org.apache.avro.specific.SpecificRecord {
-  private static final long serialVersionUID = -2267633113104478779L;
+  private static final long serialVersionUID = -8301646732596250897L;
 
 
-  public static final org.apache.avro.Schema SCHEMA$ = new org.apache.avro.Schema.Parser().parse("{\"type\":\"record\",\"name\":\"AvroStopTimeUpdate\",\"namespace\":\"com.fyp.avro\",\"fields\":[{\"name\":\"stopSequence\",\"type\":\"string\"},{\"name\":\"aDelay\",\"type\":[\"null\",\"int\"],\"default\":null},{\"name\":\"dDelay\",\"type\":[\"null\",\"int\"],\"default\":null},{\"name\":\"stopId\",\"type\":\"string\"},{\"name\":\"stopTimeUpdateScheduleRelationship\",\"type\":[\"null\",\"string\"],\"default\":null}]}");
+  public static final org.apache.avro.Schema SCHEMA$ = new org.apache.avro.Schema.Parser().parse("{\"type\":\"record\",\"name\":\"AvroStopTimeUpdate\",\"namespace\":\"com.fyp.core.avro\",\"fields\":[{\"name\":\"stopSequence\",\"type\":\"string\"},{\"name\":\"aDelay\",\"type\":[\"null\",\"int\"],\"default\":null},{\"name\":\"dDelay\",\"type\":[\"null\",\"int\"],\"default\":null},{\"name\":\"stopId\",\"type\":\"string\"},{\"name\":\"stopTimeUpdateScheduleRelationship\",\"type\":[\"null\",\"string\"],\"default\":null}]}");
   public static org.apache.avro.Schema getClassSchema() { return SCHEMA$; }
 
   private static final SpecificData MODEL$ = new SpecificData();
@@ -224,8 +224,8 @@ public class AvroStopTimeUpdate extends org.apache.avro.specific.SpecificRecordB
    * Creates a new AvroStopTimeUpdate RecordBuilder.
    * @return A new AvroStopTimeUpdate RecordBuilder
    */
-  public static com.fyp.avro.AvroStopTimeUpdate.Builder newBuilder() {
-    return new com.fyp.avro.AvroStopTimeUpdate.Builder();
+  public static com.fyp.core.avro.AvroStopTimeUpdate.Builder newBuilder() {
+    return new com.fyp.core.avro.AvroStopTimeUpdate.Builder();
   }
 
   /**
@@ -233,11 +233,11 @@ public class AvroStopTimeUpdate extends org.apache.avro.specific.SpecificRecordB
    * @param other The existing builder to copy.
    * @return A new AvroStopTimeUpdate RecordBuilder
    */
-  public static com.fyp.avro.AvroStopTimeUpdate.Builder newBuilder(com.fyp.avro.AvroStopTimeUpdate.Builder other) {
+  public static com.fyp.core.avro.AvroStopTimeUpdate.Builder newBuilder(com.fyp.core.avro.AvroStopTimeUpdate.Builder other) {
     if (other == null) {
-      return new com.fyp.avro.AvroStopTimeUpdate.Builder();
+      return new com.fyp.core.avro.AvroStopTimeUpdate.Builder();
     } else {
-      return new com.fyp.avro.AvroStopTimeUpdate.Builder(other);
+      return new com.fyp.core.avro.AvroStopTimeUpdate.Builder(other);
     }
   }
 
@@ -246,11 +246,11 @@ public class AvroStopTimeUpdate extends org.apache.avro.specific.SpecificRecordB
    * @param other The existing instance to copy.
    * @return A new AvroStopTimeUpdate RecordBuilder
    */
-  public static com.fyp.avro.AvroStopTimeUpdate.Builder newBuilder(com.fyp.avro.AvroStopTimeUpdate other) {
+  public static com.fyp.core.avro.AvroStopTimeUpdate.Builder newBuilder(com.fyp.core.avro.AvroStopTimeUpdate other) {
     if (other == null) {
-      return new com.fyp.avro.AvroStopTimeUpdate.Builder();
+      return new com.fyp.core.avro.AvroStopTimeUpdate.Builder();
     } else {
-      return new com.fyp.avro.AvroStopTimeUpdate.Builder(other);
+      return new com.fyp.core.avro.AvroStopTimeUpdate.Builder(other);
     }
   }
 
@@ -276,7 +276,7 @@ public class AvroStopTimeUpdate extends org.apache.avro.specific.SpecificRecordB
      * Creates a Builder by copying an existing Builder.
      * @param other The existing Builder to copy.
      */
-    private Builder(com.fyp.avro.AvroStopTimeUpdate.Builder other) {
+    private Builder(com.fyp.core.avro.AvroStopTimeUpdate.Builder other) {
       super(other);
       if (isValidValue(fields()[0], other.stopSequence)) {
         this.stopSequence = data().deepCopy(fields()[0].schema(), other.stopSequence);
@@ -304,7 +304,7 @@ public class AvroStopTimeUpdate extends org.apache.avro.specific.SpecificRecordB
      * Creates a Builder by copying an existing AvroStopTimeUpdate instance
      * @param other The existing instance to copy.
      */
-    private Builder(com.fyp.avro.AvroStopTimeUpdate other) {
+    private Builder(com.fyp.core.avro.AvroStopTimeUpdate other) {
       super(SCHEMA$, MODEL$);
       if (isValidValue(fields()[0], other.stopSequence)) {
         this.stopSequence = data().deepCopy(fields()[0].schema(), other.stopSequence);
@@ -342,7 +342,7 @@ public class AvroStopTimeUpdate extends org.apache.avro.specific.SpecificRecordB
       * @param value The value of 'stopSequence'.
       * @return This builder.
       */
-    public com.fyp.avro.AvroStopTimeUpdate.Builder setStopSequence(java.lang.CharSequence value) {
+    public com.fyp.core.avro.AvroStopTimeUpdate.Builder setStopSequence(java.lang.CharSequence value) {
       validate(fields()[0], value);
       this.stopSequence = value;
       fieldSetFlags()[0] = true;
@@ -362,7 +362,7 @@ public class AvroStopTimeUpdate extends org.apache.avro.specific.SpecificRecordB
       * Clears the value of the 'stopSequence' field.
       * @return This builder.
       */
-    public com.fyp.avro.AvroStopTimeUpdate.Builder clearStopSequence() {
+    public com.fyp.core.avro.AvroStopTimeUpdate.Builder clearStopSequence() {
       stopSequence = null;
       fieldSetFlags()[0] = false;
       return this;
@@ -382,7 +382,7 @@ public class AvroStopTimeUpdate extends org.apache.avro.specific.SpecificRecordB
       * @param value The value of 'aDelay'.
       * @return This builder.
       */
-    public com.fyp.avro.AvroStopTimeUpdate.Builder setADelay(java.lang.Integer value) {
+    public com.fyp.core.avro.AvroStopTimeUpdate.Builder setADelay(java.lang.Integer value) {
       validate(fields()[1], value);
       this.aDelay = value;
       fieldSetFlags()[1] = true;
@@ -402,7 +402,7 @@ public class AvroStopTimeUpdate extends org.apache.avro.specific.SpecificRecordB
       * Clears the value of the 'aDelay' field.
       * @return This builder.
       */
-    public com.fyp.avro.AvroStopTimeUpdate.Builder clearADelay() {
+    public com.fyp.core.avro.AvroStopTimeUpdate.Builder clearADelay() {
       aDelay = null;
       fieldSetFlags()[1] = false;
       return this;
@@ -422,7 +422,7 @@ public class AvroStopTimeUpdate extends org.apache.avro.specific.SpecificRecordB
       * @param value The value of 'dDelay'.
       * @return This builder.
       */
-    public com.fyp.avro.AvroStopTimeUpdate.Builder setDDelay(java.lang.Integer value) {
+    public com.fyp.core.avro.AvroStopTimeUpdate.Builder setDDelay(java.lang.Integer value) {
       validate(fields()[2], value);
       this.dDelay = value;
       fieldSetFlags()[2] = true;
@@ -442,7 +442,7 @@ public class AvroStopTimeUpdate extends org.apache.avro.specific.SpecificRecordB
       * Clears the value of the 'dDelay' field.
       * @return This builder.
       */
-    public com.fyp.avro.AvroStopTimeUpdate.Builder clearDDelay() {
+    public com.fyp.core.avro.AvroStopTimeUpdate.Builder clearDDelay() {
       dDelay = null;
       fieldSetFlags()[2] = false;
       return this;
@@ -462,7 +462,7 @@ public class AvroStopTimeUpdate extends org.apache.avro.specific.SpecificRecordB
       * @param value The value of 'stopId'.
       * @return This builder.
       */
-    public com.fyp.avro.AvroStopTimeUpdate.Builder setStopId(java.lang.CharSequence value) {
+    public com.fyp.core.avro.AvroStopTimeUpdate.Builder setStopId(java.lang.CharSequence value) {
       validate(fields()[3], value);
       this.stopId = value;
       fieldSetFlags()[3] = true;
@@ -482,7 +482,7 @@ public class AvroStopTimeUpdate extends org.apache.avro.specific.SpecificRecordB
       * Clears the value of the 'stopId' field.
       * @return This builder.
       */
-    public com.fyp.avro.AvroStopTimeUpdate.Builder clearStopId() {
+    public com.fyp.core.avro.AvroStopTimeUpdate.Builder clearStopId() {
       stopId = null;
       fieldSetFlags()[3] = false;
       return this;
@@ -502,7 +502,7 @@ public class AvroStopTimeUpdate extends org.apache.avro.specific.SpecificRecordB
       * @param value The value of 'stopTimeUpdateScheduleRelationship'.
       * @return This builder.
       */
-    public com.fyp.avro.AvroStopTimeUpdate.Builder setStopTimeUpdateScheduleRelationship(java.lang.CharSequence value) {
+    public com.fyp.core.avro.AvroStopTimeUpdate.Builder setStopTimeUpdateScheduleRelationship(java.lang.CharSequence value) {
       validate(fields()[4], value);
       this.stopTimeUpdateScheduleRelationship = value;
       fieldSetFlags()[4] = true;
@@ -522,7 +522,7 @@ public class AvroStopTimeUpdate extends org.apache.avro.specific.SpecificRecordB
       * Clears the value of the 'stopTimeUpdateScheduleRelationship' field.
       * @return This builder.
       */
-    public com.fyp.avro.AvroStopTimeUpdate.Builder clearStopTimeUpdateScheduleRelationship() {
+    public com.fyp.core.avro.AvroStopTimeUpdate.Builder clearStopTimeUpdateScheduleRelationship() {
       stopTimeUpdateScheduleRelationship = null;
       fieldSetFlags()[4] = false;
       return this;

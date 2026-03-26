@@ -1,7 +1,7 @@
 {
   "type": "record",
   "name": "AvroRouteMetric",
-  "namespace": "com.fyp.core.avroclasses",
+  "namespace": "com.fyp.core.avro",
   "fields": [
     {
       "name": "routeId",

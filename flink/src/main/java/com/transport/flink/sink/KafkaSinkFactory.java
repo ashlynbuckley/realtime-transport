@@ -1,6 +1,6 @@
 package com.transport.flink.sink;
 
-import com.fyp.avro.AvroRouteMetric;
+import com.fyp.core.avro.AvroRouteMetric;
 import org.apache.flink.connector.kafka.sink.KafkaRecordSerializationSchema;
 import org.apache.flink.connector.kafka.sink.KafkaSink;
 import org.apache.flink.formats.avro.registry.confluent.ConfluentRegistryAvroSerializationSchema;

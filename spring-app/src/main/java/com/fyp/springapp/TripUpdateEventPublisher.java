@@ -1,7 +1,7 @@
 package com.fyp.springapp;
 
-import com.fyp.avro.AvroStopTimeUpdate;
-import com.fyp.avro.AvroTripUpdateEvent;
+import com.fyp.core.avro.AvroStopTimeUpdate;
+import com.fyp.core.avro.AvroTripUpdateEvent;
 import com.fyp.springapp.mapping.tripupdate.StopTimeUpdatePOJO;
 import com.fyp.springapp.mapping.tripupdate.TripUpdateEvent;
 import org.springframework.beans.factory.annotation.Autowired;

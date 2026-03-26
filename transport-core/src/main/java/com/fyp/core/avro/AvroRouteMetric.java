@@ -3,7 +3,7 @@
  *
  * DO NOT EDIT DIRECTLY
  */
-package com.fyp.avro;
+package com.fyp.core.avro;
 
 import org.apache.avro.generic.GenericArray;
 import org.apache.avro.specific.SpecificData;
@@ -14,10 +14,10 @@ import org.apache.avro.message.SchemaStore;
 
 @org.apache.avro.specific.AvroGenerated
 public class AvroRouteMetric extends org.apache.avro.specific.SpecificRecordBase implements org.apache.avro.specific.SpecificRecord {
-  private static final long serialVersionUID = 8658818306895490063L;
+  private static final long serialVersionUID = 1690180331557932842L;
 
 
-  public static final org.apache.avro.Schema SCHEMA$ = new org.apache.avro.Schema.Parser().parse("{\"type\":\"record\",\"name\":\"AvroRouteMetric\",\"namespace\":\"com.fyp.avro\",\"fields\":[{\"name\":\"routeId\",\"type\":\"string\"},{\"name\":\"windowStart\",\"type\":\"long\"},{\"name\":\"windowEnd\",\"type\":\"long\"},{\"name\":\"delayCount\",\"type\":\"long\"},{\"name\":\"maxArrivalDelay\",\"type\":\"long\"},{\"name\":\"minArrivalDelay\",\"type\":\"long\"},{\"name\":\"maxDepartureDelay\",\"type\":\"long\"},{\"name\":\"minDepartureDelay\",\"type\":\"long\"},{\"name\":\"totalDepartureDelay\",\"type\":\"long\"},{\"name\":\"totalArrivalDelay\",\"type\":\"long\"},{\"name\":\"avgArrivalDelay\",\"type\":\"double\"},{\"name\":\"avgDepartureDelay\",\"type\":\"double\"},{\"name\":\"totalOverallDelay\",\"type\":\"long\"}]}");
+  public static final org.apache.avro.Schema SCHEMA$ = new org.apache.avro.Schema.Parser().parse("{\"type\":\"record\",\"name\":\"AvroRouteMetric\",\"namespace\":\"com.fyp.core.avroclasses\",\"fields\":[{\"name\":\"routeId\",\"type\":\"string\"},{\"name\":\"windowStart\",\"type\":\"long\"},{\"name\":\"windowEnd\",\"type\":\"long\"},{\"name\":\"delayCount\",\"type\":\"long\"},{\"name\":\"maxArrivalDelay\",\"type\":\"long\"},{\"name\":\"minArrivalDelay\",\"type\":\"long\"},{\"name\":\"maxDepartureDelay\",\"type\":\"long\"},{\"name\":\"minDepartureDelay\",\"type\":\"long\"},{\"name\":\"totalDepartureDelay\",\"type\":\"long\"},{\"name\":\"totalArrivalDelay\",\"type\":\"long\"},{\"name\":\"avgArrivalDelay\",\"type\":\"double\"},{\"name\":\"avgDepartureDelay\",\"type\":\"double\"},{\"name\":\"totalOverallDelay\",\"type\":\"long\"}]}");
   public static org.apache.avro.Schema getClassSchema() { return SCHEMA$; }
 
   private static final SpecificData MODEL$ = new SpecificData();
@@ -400,8 +400,8 @@ public class AvroRouteMetric extends org.apache.avro.specific.SpecificRecordBase
    * Creates a new AvroRouteMetric RecordBuilder.
    * @return A new AvroRouteMetric RecordBuilder
    */
-  public static com.fyp.avro.AvroRouteMetric.Builder newBuilder() {
-    return new com.fyp.avro.AvroRouteMetric.Builder();
+  public static AvroRouteMetric.Builder newBuilder() {
+    return new AvroRouteMetric.Builder();
   }
 
   /**
@@ -409,11 +409,11 @@ public class AvroRouteMetric extends org.apache.avro.specific.SpecificRecordBase
    * @param other The existing builder to copy.
    * @return A new AvroRouteMetric RecordBuilder
    */
-  public static com.fyp.avro.AvroRouteMetric.Builder newBuilder(com.fyp.avro.AvroRouteMetric.Builder other) {
+  public static AvroRouteMetric.Builder newBuilder(AvroRouteMetric.Builder other) {
     if (other == null) {
-      return new com.fyp.avro.AvroRouteMetric.Builder();
+      return new AvroRouteMetric.Builder();
     } else {
-      return new com.fyp.avro.AvroRouteMetric.Builder(other);
+      return new AvroRouteMetric.Builder(other);
     }
   }
 
@@ -422,11 +422,11 @@ public class AvroRouteMetric extends org.apache.avro.specific.SpecificRecordBase
    * @param other The existing instance to copy.
    * @return A new AvroRouteMetric RecordBuilder
    */
-  public static com.fyp.avro.AvroRouteMetric.Builder newBuilder(com.fyp.avro.AvroRouteMetric other) {
+  public static AvroRouteMetric.Builder newBuilder(AvroRouteMetric other) {
     if (other == null) {
-      return new com.fyp.avro.AvroRouteMetric.Builder();
+      return new AvroRouteMetric.Builder();
     } else {
-      return new com.fyp.avro.AvroRouteMetric.Builder(other);
+      return new AvroRouteMetric.Builder(other);
     }
   }
 
@@ -460,7 +460,7 @@ public class AvroRouteMetric extends org.apache.avro.specific.SpecificRecordBase
      * Creates a Builder by copying an existing Builder.
      * @param other The existing Builder to copy.
      */
-    private Builder(com.fyp.avro.AvroRouteMetric.Builder other) {
+    private Builder(AvroRouteMetric.Builder other) {
       super(other);
       if (isValidValue(fields()[0], other.routeId)) {
         this.routeId = data().deepCopy(fields()[0].schema(), other.routeId);
@@ -520,7 +520,7 @@ public class AvroRouteMetric extends org.apache.avro.specific.SpecificRecordBase
      * Creates a Builder by copying an existing AvroRouteMetric instance
      * @param other The existing instance to copy.
      */
-    private Builder(com.fyp.avro.AvroRouteMetric other) {
+    private Builder(AvroRouteMetric other) {
       super(SCHEMA$, MODEL$);
       if (isValidValue(fields()[0], other.routeId)) {
         this.routeId = data().deepCopy(fields()[0].schema(), other.routeId);
@@ -590,7 +590,7 @@ public class AvroRouteMetric extends org.apache.avro.specific.SpecificRecordBase
       * @param value The value of 'routeId'.
       * @return This builder.
       */
-    public com.fyp.avro.AvroRouteMetric.Builder setRouteId(java.lang.CharSequence value) {
+    public AvroRouteMetric.Builder setRouteId(java.lang.CharSequence value) {
       validate(fields()[0], value);
       this.routeId = value;
       fieldSetFlags()[0] = true;
@@ -610,7 +610,7 @@ public class AvroRouteMetric extends org.apache.avro.specific.SpecificRecordBase
       * Clears the value of the 'routeId' field.
       * @return This builder.
       */
-    public com.fyp.avro.AvroRouteMetric.Builder clearRouteId() {
+    public AvroRouteMetric.Builder clearRouteId() {
       routeId = null;
       fieldSetFlags()[0] = false;
       return this;
@@ -630,7 +630,7 @@ public class AvroRouteMetric extends org.apache.avro.specific.SpecificRecordBase
       * @param value The value of 'windowStart'.
       * @return This builder.
       */
-    public com.fyp.avro.AvroRouteMetric.Builder setWindowStart(long value) {
+    public AvroRouteMetric.Builder setWindowStart(long value) {
       validate(fields()[1], value);
       this.windowStart = value;
       fieldSetFlags()[1] = true;
@@ -650,7 +650,7 @@ public class AvroRouteMetric extends org.apache.avro.specific.SpecificRecordBase
       * Clears the value of the 'windowStart' field.
       * @return This builder.
       */
-    public com.fyp.avro.AvroRouteMetric.Builder clearWindowStart() {
+    public AvroRouteMetric.Builder clearWindowStart() {
       fieldSetFlags()[1] = false;
       return this;
     }
@@ -669,7 +669,7 @@ public class AvroRouteMetric extends org.apache.avro.specific.SpecificRecordBase
       * @param value The value of 'windowEnd'.
       * @return This builder.
       */
-    public com.fyp.avro.AvroRouteMetric.Builder setWindowEnd(long value) {
+    public AvroRouteMetric.Builder setWindowEnd(long value) {
       validate(fields()[2], value);
       this.windowEnd = value;
       fieldSetFlags()[2] = true;
@@ -689,7 +689,7 @@ public class AvroRouteMetric extends org.apache.avro.specific.SpecificRecordBase
       * Clears the value of the 'windowEnd' field.
       * @return This builder.
       */
-    public com.fyp.avro.AvroRouteMetric.Builder clearWindowEnd() {
+    public AvroRouteMetric.Builder clearWindowEnd() {
       fieldSetFlags()[2] = false;
       return this;
     }
@@ -708,7 +708,7 @@ public class AvroRouteMetric extends org.apache.avro.specific.SpecificRecordBase
       * @param value The value of 'delayCount'.
       * @return This builder.
       */
-    public com.fyp.avro.AvroRouteMetric.Builder setDelayCount(long value) {
+    public AvroRouteMetric.Builder setDelayCount(long value) {
       validate(fields()[3], value);
       this.delayCount = value;
       fieldSetFlags()[3] = true;
@@ -728,7 +728,7 @@ public class AvroRouteMetric extends org.apache.avro.specific.SpecificRecordBase
       * Clears the value of the 'delayCount' field.
       * @return This builder.
       */
-    public com.fyp.avro.AvroRouteMetric.Builder clearDelayCount() {
+    public AvroRouteMetric.Builder clearDelayCount() {
       fieldSetFlags()[3] = false;
       return this;
     }
@@ -747,7 +747,7 @@ public class AvroRouteMetric extends org.apache.avro.specific.SpecificRecordBase
       * @param value The value of 'maxArrivalDelay'.
       * @return This builder.
       */
-    public com.fyp.avro.AvroRouteMetric.Builder setMaxArrivalDelay(long value) {
+    public AvroRouteMetric.Builder setMaxArrivalDelay(long value) {
       validate(fields()[4], value);
       this.maxArrivalDelay = value;
       fieldSetFlags()[4] = true;
@@ -767,7 +767,7 @@ public class AvroRouteMetric extends org.apache.avro.specific.SpecificRecordBase
       * Clears the value of the 'maxArrivalDelay' field.
       * @return This builder.
       */
-    public com.fyp.avro.AvroRouteMetric.Builder clearMaxArrivalDelay() {
+    public AvroRouteMetric.Builder clearMaxArrivalDelay() {
       fieldSetFlags()[4] = false;
       return this;
     }
@@ -786,7 +786,7 @@ public class AvroRouteMetric extends org.apache.avro.specific.SpecificRecordBase
       * @param value The value of 'minArrivalDelay'.
       * @return This builder.
       */
-    public com.fyp.avro.AvroRouteMetric.Builder setMinArrivalDelay(long value) {
+    public AvroRouteMetric.Builder setMinArrivalDelay(long value) {
       validate(fields()[5], value);
       this.minArrivalDelay = value;
       fieldSetFlags()[5] = true;
@@ -806,7 +806,7 @@ public class AvroRouteMetric extends org.apache.avro.specific.SpecificRecordBase
       * Clears the value of the 'minArrivalDelay' field.
       * @return This builder.
       */
-    public com.fyp.avro.AvroRouteMetric.Builder clearMinArrivalDelay() {
+    public AvroRouteMetric.Builder clearMinArrivalDelay() {
       fieldSetFlags()[5] = false;
       return this;
     }
@@ -825,7 +825,7 @@ public class AvroRouteMetric extends org.apache.avro.specific.SpecificRecordBase
       * @param value The value of 'maxDepartureDelay'.
       * @return This builder.
       */
-    public com.fyp.avro.AvroRouteMetric.Builder setMaxDepartureDelay(long value) {
+    public AvroRouteMetric.Builder setMaxDepartureDelay(long value) {
       validate(fields()[6], value);
       this.maxDepartureDelay = value;
       fieldSetFlags()[6] = true;
@@ -845,7 +845,7 @@ public class AvroRouteMetric extends org.apache.avro.specific.SpecificRecordBase
       * Clears the value of the 'maxDepartureDelay' field.
       * @return This builder.
       */
-    public com.fyp.avro.AvroRouteMetric.Builder clearMaxDepartureDelay() {
+    public AvroRouteMetric.Builder clearMaxDepartureDelay() {
       fieldSetFlags()[6] = false;
       return this;
     }
@@ -864,7 +864,7 @@ public class AvroRouteMetric extends org.apache.avro.specific.SpecificRecordBase
       * @param value The value of 'minDepartureDelay'.
       * @return This builder.
       */
-    public com.fyp.avro.AvroRouteMetric.Builder setMinDepartureDelay(long value) {
+    public AvroRouteMetric.Builder setMinDepartureDelay(long value) {
       validate(fields()[7], value);
       this.minDepartureDelay = value;
       fieldSetFlags()[7] = true;
@@ -884,7 +884,7 @@ public class AvroRouteMetric extends org.apache.avro.specific.SpecificRecordBase
       * Clears the value of the 'minDepartureDelay' field.
       * @return This builder.
       */
-    public com.fyp.avro.AvroRouteMetric.Builder clearMinDepartureDelay() {
+    public AvroRouteMetric.Builder clearMinDepartureDelay() {
       fieldSetFlags()[7] = false;
       return this;
     }
@@ -903,7 +903,7 @@ public class AvroRouteMetric extends org.apache.avro.specific.SpecificRecordBase
       * @param value The value of 'totalDepartureDelay'.
       * @return This builder.
       */
-    public com.fyp.avro.AvroRouteMetric.Builder setTotalDepartureDelay(long value) {
+    public AvroRouteMetric.Builder setTotalDepartureDelay(long value) {
       validate(fields()[8], value);
       this.totalDepartureDelay = value;
       fieldSetFlags()[8] = true;
@@ -923,7 +923,7 @@ public class AvroRouteMetric extends org.apache.avro.specific.SpecificRecordBase
       * Clears the value of the 'totalDepartureDelay' field.
       * @return This builder.
       */
-    public com.fyp.avro.AvroRouteMetric.Builder clearTotalDepartureDelay() {
+    public AvroRouteMetric.Builder clearTotalDepartureDelay() {
       fieldSetFlags()[8] = false;
       return this;
     }
@@ -942,7 +942,7 @@ public class AvroRouteMetric extends org.apache.avro.specific.SpecificRecordBase
       * @param value The value of 'totalArrivalDelay'.
       * @return This builder.
       */
-    public com.fyp.avro.AvroRouteMetric.Builder setTotalArrivalDelay(long value) {
+    public AvroRouteMetric.Builder setTotalArrivalDelay(long value) {
       validate(fields()[9], value);
       this.totalArrivalDelay = value;
       fieldSetFlags()[9] = true;
@@ -962,7 +962,7 @@ public class AvroRouteMetric extends org.apache.avro.specific.SpecificRecordBase
       * Clears the value of the 'totalArrivalDelay' field.
       * @return This builder.
       */
-    public com.fyp.avro.AvroRouteMetric.Builder clearTotalArrivalDelay() {
+    public AvroRouteMetric.Builder clearTotalArrivalDelay() {
       fieldSetFlags()[9] = false;
       return this;
     }
@@ -981,7 +981,7 @@ public class AvroRouteMetric extends org.apache.avro.specific.SpecificRecordBase
       * @param value The value of 'avgArrivalDelay'.
       * @return This builder.
       */
-    public com.fyp.avro.AvroRouteMetric.Builder setAvgArrivalDelay(double value) {
+    public AvroRouteMetric.Builder setAvgArrivalDelay(double value) {
       validate(fields()[10], value);
       this.avgArrivalDelay = value;
       fieldSetFlags()[10] = true;
@@ -1001,7 +1001,7 @@ public class AvroRouteMetric extends org.apache.avro.specific.SpecificRecordBase
       * Clears the value of the 'avgArrivalDelay' field.
       * @return This builder.
       */
-    public com.fyp.avro.AvroRouteMetric.Builder clearAvgArrivalDelay() {
+    public AvroRouteMetric.Builder clearAvgArrivalDelay() {
       fieldSetFlags()[10] = false;
       return this;
     }
@@ -1020,7 +1020,7 @@ public class AvroRouteMetric extends org.apache.avro.specific.SpecificRecordBase
       * @param value The value of 'avgDepartureDelay'.
       * @return This builder.
       */
-    public com.fyp.avro.AvroRouteMetric.Builder setAvgDepartureDelay(double value) {
+    public AvroRouteMetric.Builder setAvgDepartureDelay(double value) {
       validate(fields()[11], value);
       this.avgDepartureDelay = value;
       fieldSetFlags()[11] = true;
@@ -1040,7 +1040,7 @@ public class AvroRouteMetric extends org.apache.avro.specific.SpecificRecordBase
       * Clears the value of the 'avgDepartureDelay' field.
       * @return This builder.
       */
-    public com.fyp.avro.AvroRouteMetric.Builder clearAvgDepartureDelay() {
+    public AvroRouteMetric.Builder clearAvgDepartureDelay() {
       fieldSetFlags()[11] = false;
       return this;
     }
@@ -1059,7 +1059,7 @@ public class AvroRouteMetric extends org.apache.avro.specific.SpecificRecordBase
       * @param value The value of 'totalOverallDelay'.
       * @return This builder.
       */
-    public com.fyp.avro.AvroRouteMetric.Builder setTotalOverallDelay(long value) {
+    public AvroRouteMetric.Builder setTotalOverallDelay(long value) {
       validate(fields()[12], value);
       this.totalOverallDelay = value;
       fieldSetFlags()[12] = true;
@@ -1079,7 +1079,7 @@ public class AvroRouteMetric extends org.apache.avro.specific.SpecificRecordBase
       * Clears the value of the 'totalOverallDelay' field.
       * @return This builder.
       */
-    public com.fyp.avro.AvroRouteMetric.Builder clearTotalOverallDelay() {
+    public AvroRouteMetric.Builder clearTotalOverallDelay() {
       fieldSetFlags()[12] = false;
       return this;
     }

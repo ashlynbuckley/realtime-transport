@@ -1,6 +1,5 @@
 package com.transport.flink.source;
 
-import com.fyp.avro.AvroVehicleEvent;
 import org.apache.avro.specific.SpecificRecord;
 import org.apache.flink.api.common.eventtime.WatermarkStrategy;
 import org.apache.flink.connector.kafka.source.KafkaSource;

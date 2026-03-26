@@ -1,6 +1,6 @@
 package com.fyp.springapp;
 
-import com.fyp.avro.AvroVehicleEvent;
+import com.fyp.core.avro.AvroVehicleEvent;
 import com.fyp.springapp.mapping.vehicle.VehicleEvent;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.kafka.core.KafkaTemplate;
@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
 public class VehicleEventPublisher {
 
     @Autowired
-    private final KafkaTemplate<String, com.fyp.avro.AvroVehicleEvent> kafkaTemplate;
+    private final KafkaTemplate<String, com.fyp.core.avro.AvroVehicleEvent> kafkaTemplate;
 
     private static final String VEHICLE_TOPIC = "vehicle-topic";
 

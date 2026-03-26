@@ -3,8 +3,9 @@
  *
  * DO NOT EDIT DIRECTLY
  */
-package com.fyp.avro;
+package com.fyp.core.avro;
 
+import org.apache.avro.generic.GenericArray;
 import org.apache.avro.specific.SpecificData;
 import org.apache.avro.util.Utf8;
 import org.apache.avro.message.BinaryMessageEncoder;
@@ -12,26 +13,26 @@ import org.apache.avro.message.BinaryMessageDecoder;
 import org.apache.avro.message.SchemaStore;
 
 @org.apache.avro.specific.AvroGenerated
-public class AvroTripUpdateEvent extends org.apache.avro.specific.SpecificRecordBase implements org.apache.avro.specific.SpecificRecord {
-  private static final long serialVersionUID = 4000901943687193056L;
+public class AvroVehicleEvent extends org.apache.avro.specific.SpecificRecordBase implements org.apache.avro.specific.SpecificRecord {
+  private static final long serialVersionUID = -9194279991330983636L;
 
 
-  public static final org.apache.avro.Schema SCHEMA$ = new org.apache.avro.Schema.Parser().parse("{\"type\":\"record\",\"name\":\"AvroTripUpdateEvent\",\"namespace\":\"com.fyp.avro\",\"fields\":[{\"name\":\"tripId\",\"type\":\"string\"},{\"name\":\"startTime\",\"type\":\"string\"},{\"name\":\"startDate\",\"type\":\"string\"},{\"name\":\"scheduleRelationship\",\"type\":\"string\"},{\"name\":\"routeId\",\"type\":\"string\"},{\"name\":\"tripUpdateTimestamp\",\"type\":\"string\"},{\"name\":\"stopTimeUpdates\",\"type\":{\"type\":\"array\",\"items\":{\"type\":\"record\",\"name\":\"AvroStopTimeUpdate\",\"fields\":[{\"name\":\"stopSequence\",\"type\":\"string\"},{\"name\":\"aDelay\",\"type\":[\"null\",\"int\"],\"default\":null},{\"name\":\"dDelay\",\"type\":[\"null\",\"int\"],\"default\":null},{\"name\":\"stopId\",\"type\":\"string\"},{\"name\":\"stopTimeUpdateScheduleRelationship\",\"type\":[\"null\",\"string\"],\"default\":null}]}}}]}");
+  public static final org.apache.avro.Schema SCHEMA$ = new org.apache.avro.Schema.Parser().parse("{\"type\":\"record\",\"name\":\"AvroVehicleEvent\",\"namespace\":\"com.fyp.core.avro\",\"fields\":[{\"name\":\"tripId\",\"type\":\"string\"},{\"name\":\"startTime\",\"type\":\"string\"},{\"name\":\"startDate\",\"type\":\"string\"},{\"name\":\"scheduleRelationship\",\"type\":\"string\"},{\"name\":\"routeId\",\"type\":\"string\"},{\"name\":\"vehicleTimestamp\",\"type\":\"string\"}]}");
   public static org.apache.avro.Schema getClassSchema() { return SCHEMA$; }
 
   private static final SpecificData MODEL$ = new SpecificData();
 
-  private static final BinaryMessageEncoder<AvroTripUpdateEvent> ENCODER =
+  private static final BinaryMessageEncoder<AvroVehicleEvent> ENCODER =
       new BinaryMessageEncoder<>(MODEL$, SCHEMA$);
 
-  private static final BinaryMessageDecoder<AvroTripUpdateEvent> DECODER =
+  private static final BinaryMessageDecoder<AvroVehicleEvent> DECODER =
       new BinaryMessageDecoder<>(MODEL$, SCHEMA$);
 
   /**
    * Return the BinaryMessageEncoder instance used by this class.
    * @return the message encoder used by this class
    */
-  public static BinaryMessageEncoder<AvroTripUpdateEvent> getEncoder() {
+  public static BinaryMessageEncoder<AvroVehicleEvent> getEncoder() {
     return ENCODER;
   }
 
@@ -39,7 +40,7 @@ public class AvroTripUpdateEvent extends org.apache.avro.specific.SpecificRecord
    * Return the BinaryMessageDecoder instance used by this class.
    * @return the message decoder used by this class
    */
-  public static BinaryMessageDecoder<AvroTripUpdateEvent> getDecoder() {
+  public static BinaryMessageDecoder<AvroVehicleEvent> getDecoder() {
     return DECODER;
   }
 
@@ -48,12 +49,12 @@ public class AvroTripUpdateEvent extends org.apache.avro.specific.SpecificRecord
    * @param resolver a {@link SchemaStore} used to find schemas by fingerprint
    * @return a BinaryMessageDecoder instance for this class backed by the given SchemaStore
    */
-  public static BinaryMessageDecoder<AvroTripUpdateEvent> createDecoder(SchemaStore resolver) {
+  public static BinaryMessageDecoder<AvroVehicleEvent> createDecoder(SchemaStore resolver) {
     return new BinaryMessageDecoder<>(MODEL$, SCHEMA$, resolver);
   }
 
   /**
-   * Serializes this AvroTripUpdateEvent to a ByteBuffer.
+   * Serializes this AvroVehicleEvent to a ByteBuffer.
    * @return a buffer holding the serialized data for this instance
    * @throws java.io.IOException if this instance could not be serialized
    */
@@ -62,12 +63,12 @@ public class AvroTripUpdateEvent extends org.apache.avro.specific.SpecificRecord
   }
 
   /**
-   * Deserializes a AvroTripUpdateEvent from a ByteBuffer.
+   * Deserializes a AvroVehicleEvent from a ByteBuffer.
    * @param b a byte buffer holding serialized data for an instance of this class
-   * @return a AvroTripUpdateEvent instance decoded from the given buffer
+   * @return a AvroVehicleEvent instance decoded from the given buffer
    * @throws java.io.IOException if the given bytes could not be deserialized into an instance of this class
    */
-  public static AvroTripUpdateEvent fromByteBuffer(
+  public static AvroVehicleEvent fromByteBuffer(
       java.nio.ByteBuffer b) throws java.io.IOException {
     return DECODER.decode(b);
   }
@@ -77,15 +78,14 @@ public class AvroTripUpdateEvent extends org.apache.avro.specific.SpecificRecord
   private java.lang.CharSequence startDate;
   private java.lang.CharSequence scheduleRelationship;
   private java.lang.CharSequence routeId;
-  private java.lang.CharSequence tripUpdateTimestamp;
-  private java.util.List<com.fyp.avro.AvroStopTimeUpdate> stopTimeUpdates;
+  private java.lang.CharSequence vehicleTimestamp;
 
   /**
    * Default constructor.  Note that this does not initialize fields
    * to their default values from the schema.  If that is desired then
    * one should use <code>newBuilder()</code>.
    */
-  public AvroTripUpdateEvent() {}
+  public AvroVehicleEvent() {}
 
   /**
    * All-args constructor.
@@ -94,17 +94,15 @@ public class AvroTripUpdateEvent extends org.apache.avro.specific.SpecificRecord
    * @param startDate The new value for startDate
    * @param scheduleRelationship The new value for scheduleRelationship
    * @param routeId The new value for routeId
-   * @param tripUpdateTimestamp The new value for tripUpdateTimestamp
-   * @param stopTimeUpdates The new value for stopTimeUpdates
+   * @param vehicleTimestamp The new value for vehicleTimestamp
    */
-  public AvroTripUpdateEvent(java.lang.CharSequence tripId, java.lang.CharSequence startTime, java.lang.CharSequence startDate, java.lang.CharSequence scheduleRelationship, java.lang.CharSequence routeId, java.lang.CharSequence tripUpdateTimestamp, java.util.List<com.fyp.avro.AvroStopTimeUpdate> stopTimeUpdates) {
+  public AvroVehicleEvent(java.lang.CharSequence tripId, java.lang.CharSequence startTime, java.lang.CharSequence startDate, java.lang.CharSequence scheduleRelationship, java.lang.CharSequence routeId, java.lang.CharSequence vehicleTimestamp) {
     this.tripId = tripId;
     this.startTime = startTime;
     this.startDate = startDate;
     this.scheduleRelationship = scheduleRelationship;
     this.routeId = routeId;
-    this.tripUpdateTimestamp = tripUpdateTimestamp;
-    this.stopTimeUpdates = stopTimeUpdates;
+    this.vehicleTimestamp = vehicleTimestamp;
   }
 
   @Override
@@ -122,8 +120,7 @@ public class AvroTripUpdateEvent extends org.apache.avro.specific.SpecificRecord
     case 2: return startDate;
     case 3: return scheduleRelationship;
     case 4: return routeId;
-    case 5: return tripUpdateTimestamp;
-    case 6: return stopTimeUpdates;
+    case 5: return vehicleTimestamp;
     default: throw new IndexOutOfBoundsException("Invalid index: " + field$);
     }
   }
@@ -138,8 +135,7 @@ public class AvroTripUpdateEvent extends org.apache.avro.specific.SpecificRecord
     case 2: startDate = (java.lang.CharSequence)value$; break;
     case 3: scheduleRelationship = (java.lang.CharSequence)value$; break;
     case 4: routeId = (java.lang.CharSequence)value$; break;
-    case 5: tripUpdateTimestamp = (java.lang.CharSequence)value$; break;
-    case 6: stopTimeUpdates = (java.util.List<com.fyp.avro.AvroStopTimeUpdate>)value$; break;
+    case 5: vehicleTimestamp = (java.lang.CharSequence)value$; break;
     default: throw new IndexOutOfBoundsException("Invalid index: " + field$);
     }
   }
@@ -230,87 +226,69 @@ public class AvroTripUpdateEvent extends org.apache.avro.specific.SpecificRecord
   }
 
   /**
-   * Gets the value of the 'tripUpdateTimestamp' field.
-   * @return The value of the 'tripUpdateTimestamp' field.
+   * Gets the value of the 'vehicleTimestamp' field.
+   * @return The value of the 'vehicleTimestamp' field.
    */
-  public java.lang.CharSequence getTripUpdateTimestamp() {
-    return tripUpdateTimestamp;
+  public java.lang.CharSequence getVehicleTimestamp() {
+    return vehicleTimestamp;
   }
 
 
   /**
-   * Sets the value of the 'tripUpdateTimestamp' field.
+   * Sets the value of the 'vehicleTimestamp' field.
    * @param value the value to set.
    */
-  public void setTripUpdateTimestamp(java.lang.CharSequence value) {
-    this.tripUpdateTimestamp = value;
+  public void setVehicleTimestamp(java.lang.CharSequence value) {
+    this.vehicleTimestamp = value;
   }
 
   /**
-   * Gets the value of the 'stopTimeUpdates' field.
-   * @return The value of the 'stopTimeUpdates' field.
+   * Creates a new AvroVehicleEvent RecordBuilder.
+   * @return A new AvroVehicleEvent RecordBuilder
    */
-  public java.util.List<com.fyp.avro.AvroStopTimeUpdate> getStopTimeUpdates() {
-    return stopTimeUpdates;
-  }
-
-
-  /**
-   * Sets the value of the 'stopTimeUpdates' field.
-   * @param value the value to set.
-   */
-  public void setStopTimeUpdates(java.util.List<com.fyp.avro.AvroStopTimeUpdate> value) {
-    this.stopTimeUpdates = value;
+  public static com.fyp.core.avro.AvroVehicleEvent.Builder newBuilder() {
+    return new com.fyp.core.avro.AvroVehicleEvent.Builder();
   }
 
   /**
-   * Creates a new AvroTripUpdateEvent RecordBuilder.
-   * @return A new AvroTripUpdateEvent RecordBuilder
-   */
-  public static AvroTripUpdateEvent.Builder newBuilder() {
-    return new AvroTripUpdateEvent.Builder();
-  }
-
-  /**
-   * Creates a new AvroTripUpdateEvent RecordBuilder by copying an existing Builder.
+   * Creates a new AvroVehicleEvent RecordBuilder by copying an existing Builder.
    * @param other The existing builder to copy.
-   * @return A new AvroTripUpdateEvent RecordBuilder
+   * @return A new AvroVehicleEvent RecordBuilder
    */
-  public static AvroTripUpdateEvent.Builder newBuilder(AvroTripUpdateEvent.Builder other) {
+  public static com.fyp.core.avro.AvroVehicleEvent.Builder newBuilder(com.fyp.core.avro.AvroVehicleEvent.Builder other) {
     if (other == null) {
-      return new AvroTripUpdateEvent.Builder();
+      return new com.fyp.core.avro.AvroVehicleEvent.Builder();
     } else {
-      return new AvroTripUpdateEvent.Builder(other);
+      return new com.fyp.core.avro.AvroVehicleEvent.Builder(other);
     }
   }
 
   /**
-   * Creates a new AvroTripUpdateEvent RecordBuilder by copying an existing AvroTripUpdateEvent instance.
+   * Creates a new AvroVehicleEvent RecordBuilder by copying an existing AvroVehicleEvent instance.
    * @param other The existing instance to copy.
-   * @return A new AvroTripUpdateEvent RecordBuilder
+   * @return A new AvroVehicleEvent RecordBuilder
    */
-  public static AvroTripUpdateEvent.Builder newBuilder(AvroTripUpdateEvent other) {
+  public static com.fyp.core.avro.AvroVehicleEvent.Builder newBuilder(com.fyp.core.avro.AvroVehicleEvent other) {
     if (other == null) {
-      return new AvroTripUpdateEvent.Builder();
+      return new com.fyp.core.avro.AvroVehicleEvent.Builder();
     } else {
-      return new AvroTripUpdateEvent.Builder(other);
+      return new com.fyp.core.avro.AvroVehicleEvent.Builder(other);
     }
   }
 
   /**
-   * RecordBuilder for AvroTripUpdateEvent instances.
+   * RecordBuilder for AvroVehicleEvent instances.
    */
   @org.apache.avro.specific.AvroGenerated
-  public static class Builder extends org.apache.avro.specific.SpecificRecordBuilderBase<AvroTripUpdateEvent>
-    implements org.apache.avro.data.RecordBuilder<AvroTripUpdateEvent> {
+  public static class Builder extends org.apache.avro.specific.SpecificRecordBuilderBase<AvroVehicleEvent>
+    implements org.apache.avro.data.RecordBuilder<AvroVehicleEvent> {
 
     private java.lang.CharSequence tripId;
     private java.lang.CharSequence startTime;
     private java.lang.CharSequence startDate;
     private java.lang.CharSequence scheduleRelationship;
     private java.lang.CharSequence routeId;
-    private java.lang.CharSequence tripUpdateTimestamp;
-    private java.util.List<com.fyp.avro.AvroStopTimeUpdate> stopTimeUpdates;
+    private java.lang.CharSequence vehicleTimestamp;
 
     /** Creates a new Builder */
     private Builder() {
@@ -321,7 +299,7 @@ public class AvroTripUpdateEvent extends org.apache.avro.specific.SpecificRecord
      * Creates a Builder by copying an existing Builder.
      * @param other The existing Builder to copy.
      */
-    private Builder(AvroTripUpdateEvent.Builder other) {
+    private Builder(com.fyp.core.avro.AvroVehicleEvent.Builder other) {
       super(other);
       if (isValidValue(fields()[0], other.tripId)) {
         this.tripId = data().deepCopy(fields()[0].schema(), other.tripId);
@@ -343,21 +321,17 @@ public class AvroTripUpdateEvent extends org.apache.avro.specific.SpecificRecord
         this.routeId = data().deepCopy(fields()[4].schema(), other.routeId);
         fieldSetFlags()[4] = other.fieldSetFlags()[4];
       }
-      if (isValidValue(fields()[5], other.tripUpdateTimestamp)) {
-        this.tripUpdateTimestamp = data().deepCopy(fields()[5].schema(), other.tripUpdateTimestamp);
+      if (isValidValue(fields()[5], other.vehicleTimestamp)) {
+        this.vehicleTimestamp = data().deepCopy(fields()[5].schema(), other.vehicleTimestamp);
         fieldSetFlags()[5] = other.fieldSetFlags()[5];
-      }
-      if (isValidValue(fields()[6], other.stopTimeUpdates)) {
-        this.stopTimeUpdates = data().deepCopy(fields()[6].schema(), other.stopTimeUpdates);
-        fieldSetFlags()[6] = other.fieldSetFlags()[6];
       }
     }
 
     /**
-     * Creates a Builder by copying an existing AvroTripUpdateEvent instance
+     * Creates a Builder by copying an existing AvroVehicleEvent instance
      * @param other The existing instance to copy.
      */
-    private Builder(AvroTripUpdateEvent other) {
+    private Builder(com.fyp.core.avro.AvroVehicleEvent other) {
       super(SCHEMA$, MODEL$);
       if (isValidValue(fields()[0], other.tripId)) {
         this.tripId = data().deepCopy(fields()[0].schema(), other.tripId);
@@ -379,13 +353,9 @@ public class AvroTripUpdateEvent extends org.apache.avro.specific.SpecificRecord
         this.routeId = data().deepCopy(fields()[4].schema(), other.routeId);
         fieldSetFlags()[4] = true;
       }
-      if (isValidValue(fields()[5], other.tripUpdateTimestamp)) {
-        this.tripUpdateTimestamp = data().deepCopy(fields()[5].schema(), other.tripUpdateTimestamp);
+      if (isValidValue(fields()[5], other.vehicleTimestamp)) {
+        this.vehicleTimestamp = data().deepCopy(fields()[5].schema(), other.vehicleTimestamp);
         fieldSetFlags()[5] = true;
-      }
-      if (isValidValue(fields()[6], other.stopTimeUpdates)) {
-        this.stopTimeUpdates = data().deepCopy(fields()[6].schema(), other.stopTimeUpdates);
-        fieldSetFlags()[6] = true;
       }
     }
 
@@ -403,7 +373,7 @@ public class AvroTripUpdateEvent extends org.apache.avro.specific.SpecificRecord
       * @param value The value of 'tripId'.
       * @return This builder.
       */
-    public AvroTripUpdateEvent.Builder setTripId(java.lang.CharSequence value) {
+    public com.fyp.core.avro.AvroVehicleEvent.Builder setTripId(java.lang.CharSequence value) {
       validate(fields()[0], value);
       this.tripId = value;
       fieldSetFlags()[0] = true;
@@ -423,7 +393,7 @@ public class AvroTripUpdateEvent extends org.apache.avro.specific.SpecificRecord
       * Clears the value of the 'tripId' field.
       * @return This builder.
       */
-    public AvroTripUpdateEvent.Builder clearTripId() {
+    public com.fyp.core.avro.AvroVehicleEvent.Builder clearTripId() {
       tripId = null;
       fieldSetFlags()[0] = false;
       return this;
@@ -443,7 +413,7 @@ public class AvroTripUpdateEvent extends org.apache.avro.specific.SpecificRecord
       * @param value The value of 'startTime'.
       * @return This builder.
       */
-    public AvroTripUpdateEvent.Builder setStartTime(java.lang.CharSequence value) {
+    public com.fyp.core.avro.AvroVehicleEvent.Builder setStartTime(java.lang.CharSequence value) {
       validate(fields()[1], value);
       this.startTime = value;
       fieldSetFlags()[1] = true;
@@ -463,7 +433,7 @@ public class AvroTripUpdateEvent extends org.apache.avro.specific.SpecificRecord
       * Clears the value of the 'startTime' field.
       * @return This builder.
       */
-    public AvroTripUpdateEvent.Builder clearStartTime() {
+    public com.fyp.core.avro.AvroVehicleEvent.Builder clearStartTime() {
       startTime = null;
       fieldSetFlags()[1] = false;
       return this;
@@ -483,7 +453,7 @@ public class AvroTripUpdateEvent extends org.apache.avro.specific.SpecificRecord
       * @param value The value of 'startDate'.
       * @return This builder.
       */
-    public AvroTripUpdateEvent.Builder setStartDate(java.lang.CharSequence value) {
+    public com.fyp.core.avro.AvroVehicleEvent.Builder setStartDate(java.lang.CharSequence value) {
       validate(fields()[2], value);
       this.startDate = value;
       fieldSetFlags()[2] = true;
@@ -503,7 +473,7 @@ public class AvroTripUpdateEvent extends org.apache.avro.specific.SpecificRecord
       * Clears the value of the 'startDate' field.
       * @return This builder.
       */
-    public AvroTripUpdateEvent.Builder clearStartDate() {
+    public com.fyp.core.avro.AvroVehicleEvent.Builder clearStartDate() {
       startDate = null;
       fieldSetFlags()[2] = false;
       return this;
@@ -523,7 +493,7 @@ public class AvroTripUpdateEvent extends org.apache.avro.specific.SpecificRecord
       * @param value The value of 'scheduleRelationship'.
       * @return This builder.
       */
-    public AvroTripUpdateEvent.Builder setScheduleRelationship(java.lang.CharSequence value) {
+    public com.fyp.core.avro.AvroVehicleEvent.Builder setScheduleRelationship(java.lang.CharSequence value) {
       validate(fields()[3], value);
       this.scheduleRelationship = value;
       fieldSetFlags()[3] = true;
@@ -543,7 +513,7 @@ public class AvroTripUpdateEvent extends org.apache.avro.specific.SpecificRecord
       * Clears the value of the 'scheduleRelationship' field.
       * @return This builder.
       */
-    public AvroTripUpdateEvent.Builder clearScheduleRelationship() {
+    public com.fyp.core.avro.AvroVehicleEvent.Builder clearScheduleRelationship() {
       scheduleRelationship = null;
       fieldSetFlags()[3] = false;
       return this;
@@ -563,7 +533,7 @@ public class AvroTripUpdateEvent extends org.apache.avro.specific.SpecificRecord
       * @param value The value of 'routeId'.
       * @return This builder.
       */
-    public AvroTripUpdateEvent.Builder setRouteId(java.lang.CharSequence value) {
+    public com.fyp.core.avro.AvroVehicleEvent.Builder setRouteId(java.lang.CharSequence value) {
       validate(fields()[4], value);
       this.routeId = value;
       fieldSetFlags()[4] = true;
@@ -583,104 +553,63 @@ public class AvroTripUpdateEvent extends org.apache.avro.specific.SpecificRecord
       * Clears the value of the 'routeId' field.
       * @return This builder.
       */
-    public AvroTripUpdateEvent.Builder clearRouteId() {
+    public com.fyp.core.avro.AvroVehicleEvent.Builder clearRouteId() {
       routeId = null;
       fieldSetFlags()[4] = false;
       return this;
     }
 
     /**
-      * Gets the value of the 'tripUpdateTimestamp' field.
+      * Gets the value of the 'vehicleTimestamp' field.
       * @return The value.
       */
-    public java.lang.CharSequence getTripUpdateTimestamp() {
-      return tripUpdateTimestamp;
+    public java.lang.CharSequence getVehicleTimestamp() {
+      return vehicleTimestamp;
     }
 
 
     /**
-      * Sets the value of the 'tripUpdateTimestamp' field.
-      * @param value The value of 'tripUpdateTimestamp'.
+      * Sets the value of the 'vehicleTimestamp' field.
+      * @param value The value of 'vehicleTimestamp'.
       * @return This builder.
       */
-    public AvroTripUpdateEvent.Builder setTripUpdateTimestamp(java.lang.CharSequence value) {
+    public com.fyp.core.avro.AvroVehicleEvent.Builder setVehicleTimestamp(java.lang.CharSequence value) {
       validate(fields()[5], value);
-      this.tripUpdateTimestamp = value;
+      this.vehicleTimestamp = value;
       fieldSetFlags()[5] = true;
       return this;
     }
 
     /**
-      * Checks whether the 'tripUpdateTimestamp' field has been set.
-      * @return True if the 'tripUpdateTimestamp' field has been set, false otherwise.
+      * Checks whether the 'vehicleTimestamp' field has been set.
+      * @return True if the 'vehicleTimestamp' field has been set, false otherwise.
       */
-    public boolean hasTripUpdateTimestamp() {
+    public boolean hasVehicleTimestamp() {
       return fieldSetFlags()[5];
     }
 
 
     /**
-      * Clears the value of the 'tripUpdateTimestamp' field.
+      * Clears the value of the 'vehicleTimestamp' field.
       * @return This builder.
       */
-    public AvroTripUpdateEvent.Builder clearTripUpdateTimestamp() {
-      tripUpdateTimestamp = null;
+    public com.fyp.core.avro.AvroVehicleEvent.Builder clearVehicleTimestamp() {
+      vehicleTimestamp = null;
       fieldSetFlags()[5] = false;
-      return this;
-    }
-
-    /**
-      * Gets the value of the 'stopTimeUpdates' field.
-      * @return The value.
-      */
-    public java.util.List<com.fyp.avro.AvroStopTimeUpdate> getStopTimeUpdates() {
-      return stopTimeUpdates;
-    }
-
-
-    /**
-      * Sets the value of the 'stopTimeUpdates' field.
-      * @param value The value of 'stopTimeUpdates'.
-      * @return This builder.
-      */
-    public AvroTripUpdateEvent.Builder setStopTimeUpdates(java.util.List<com.fyp.avro.AvroStopTimeUpdate> value) {
-      validate(fields()[6], value);
-      this.stopTimeUpdates = value;
-      fieldSetFlags()[6] = true;
-      return this;
-    }
-
-    /**
-      * Checks whether the 'stopTimeUpdates' field has been set.
-      * @return True if the 'stopTimeUpdates' field has been set, false otherwise.
-      */
-    public boolean hasStopTimeUpdates() {
-      return fieldSetFlags()[6];
-    }
-
-
-    /**
-      * Clears the value of the 'stopTimeUpdates' field.
-      * @return This builder.
-      */
-    public AvroTripUpdateEvent.Builder clearStopTimeUpdates() {
-      stopTimeUpdates = null;
-      fieldSetFlags()[6] = false;
       return this;
     }
 
     @Override
     @SuppressWarnings("unchecked")
-    public AvroTripUpdateEvent build() {
+    public AvroVehicleEvent build() {
       try {
-        AvroTripUpdateEvent record = new AvroTripUpdateEvent();
+        AvroVehicleEvent record = new AvroVehicleEvent();
         record.tripId = fieldSetFlags()[0] ? this.tripId : (java.lang.CharSequence) defaultValue(fields()[0]);
         record.startTime = fieldSetFlags()[1] ? this.startTime : (java.lang.CharSequence) defaultValue(fields()[1]);
         record.startDate = fieldSetFlags()[2] ? this.startDate : (java.lang.CharSequence) defaultValue(fields()[2]);
         record.scheduleRelationship = fieldSetFlags()[3] ? this.scheduleRelationship : (java.lang.CharSequence) defaultValue(fields()[3]);
         record.routeId = fieldSetFlags()[4] ? this.routeId : (java.lang.CharSequence) defaultValue(fields()[4]);
-        record.tripUpdateTimestamp = fieldSetFlags()[5] ? this.tripUpdateTimestamp : (java.lang.CharSequence) defaultValue(fields()[5]);
-        record.stopTimeUpdates = fieldSetFlags()[6] ? this.stopTimeUpdates : (java.util.List<com.fyp.avro.AvroStopTimeUpdate>) defaultValue(fields()[6]);
+        record.vehicleTimestamp = fieldSetFlags()[5] ? this.vehicleTimestamp : (java.lang.CharSequence) defaultValue(fields()[5]);
         return record;
       } catch (org.apache.avro.AvroMissingFieldException e) {
         throw e;
@@ -691,8 +620,8 @@ public class AvroTripUpdateEvent extends org.apache.avro.specific.SpecificRecord
   }
 
   @SuppressWarnings("unchecked")
-  private static final org.apache.avro.io.DatumWriter<AvroTripUpdateEvent>
-    WRITER$ = (org.apache.avro.io.DatumWriter<AvroTripUpdateEvent>)MODEL$.createDatumWriter(SCHEMA$);
+  private static final org.apache.avro.io.DatumWriter<AvroVehicleEvent>
+    WRITER$ = (org.apache.avro.io.DatumWriter<AvroVehicleEvent>)MODEL$.createDatumWriter(SCHEMA$);
 
   @Override public void writeExternal(java.io.ObjectOutput out)
     throws java.io.IOException {
@@ -700,8 +629,8 @@ public class AvroTripUpdateEvent extends org.apache.avro.specific.SpecificRecord
   }
 
   @SuppressWarnings("unchecked")
-  private static final org.apache.avro.io.DatumReader<AvroTripUpdateEvent>
-    READER$ = (org.apache.avro.io.DatumReader<AvroTripUpdateEvent>)MODEL$.createDatumReader(SCHEMA$);
+  private static final org.apache.avro.io.DatumReader<AvroVehicleEvent>
+    READER$ = (org.apache.avro.io.DatumReader<AvroVehicleEvent>)MODEL$.createDatumReader(SCHEMA$);
 
   @Override public void readExternal(java.io.ObjectInput in)
     throws java.io.IOException {
@@ -723,20 +652,7 @@ public class AvroTripUpdateEvent extends org.apache.avro.specific.SpecificRecord
 
     out.writeString(this.routeId);
 
-    out.writeString(this.tripUpdateTimestamp);
-
-    long size0 = this.stopTimeUpdates.size();
-    out.writeArrayStart();
-    out.setItemCount(size0);
-    long actualSize0 = 0;
-    for (com.fyp.avro.AvroStopTimeUpdate e0: this.stopTimeUpdates) {
-      actualSize0++;
-      out.startItem();
-      e0.customEncode(out);
-    }
-    out.writeArrayEnd();
-    if (actualSize0 != size0)
-      throw new java.util.ConcurrentModificationException("Array-size written was " + size0 + ", but element count was " + actualSize0 + ".");
+    out.writeString(this.vehicleTimestamp);
 
   }
 
@@ -755,28 +671,10 @@ public class AvroTripUpdateEvent extends org.apache.avro.specific.SpecificRecord
 
       this.routeId = in.readString(this.routeId instanceof Utf8 ? (Utf8)this.routeId : null);
 
-      this.tripUpdateTimestamp = in.readString(this.tripUpdateTimestamp instanceof Utf8 ? (Utf8)this.tripUpdateTimestamp : null);
-
-      long size0 = in.readArrayStart();
-      java.util.List<com.fyp.avro.AvroStopTimeUpdate> a0 = this.stopTimeUpdates;
-      if (a0 == null) {
-        a0 = new SpecificData.Array<com.fyp.avro.AvroStopTimeUpdate>((int)size0, SCHEMA$.getField("stopTimeUpdates").schema());
-        this.stopTimeUpdates = a0;
-      } else a0.clear();
-      SpecificData.Array<com.fyp.avro.AvroStopTimeUpdate> ga0 = (a0 instanceof SpecificData.Array ? (SpecificData.Array<com.fyp.avro.AvroStopTimeUpdate>)a0 : null);
-      for ( ; 0 < size0; size0 = in.arrayNext()) {
-        for ( ; size0 != 0; size0--) {
-          com.fyp.avro.AvroStopTimeUpdate e0 = (ga0 != null ? ga0.peek() : null);
-          if (e0 == null) {
-            e0 = new com.fyp.avro.AvroStopTimeUpdate();
-          }
-          e0.customDecode(in);
-          a0.add(e0);
-        }
-      }
+      this.vehicleTimestamp = in.readString(this.vehicleTimestamp instanceof Utf8 ? (Utf8)this.vehicleTimestamp : null);
 
     } else {
-      for (int i = 0; i < 7; i++) {
+      for (int i = 0; i < 6; i++) {
         switch (fieldOrder[i].pos()) {
         case 0:
           this.tripId = in.readString(this.tripId instanceof Utf8 ? (Utf8)this.tripId : null);
@@ -799,27 +697,7 @@ public class AvroTripUpdateEvent extends org.apache.avro.specific.SpecificRecord
           break;
 
         case 5:
-          this.tripUpdateTimestamp = in.readString(this.tripUpdateTimestamp instanceof Utf8 ? (Utf8)this.tripUpdateTimestamp : null);
-          break;
-
-        case 6:
-          long size0 = in.readArrayStart();
-          java.util.List<com.fyp.avro.AvroStopTimeUpdate> a0 = this.stopTimeUpdates;
-          if (a0 == null) {
-            a0 = new SpecificData.Array<com.fyp.avro.AvroStopTimeUpdate>((int)size0, SCHEMA$.getField("stopTimeUpdates").schema());
-            this.stopTimeUpdates = a0;
-          } else a0.clear();
-          SpecificData.Array<com.fyp.avro.AvroStopTimeUpdate> ga0 = (a0 instanceof SpecificData.Array ? (SpecificData.Array<com.fyp.avro.AvroStopTimeUpdate>)a0 : null);
-          for ( ; 0 < size0; size0 = in.arrayNext()) {
-            for ( ; size0 != 0; size0--) {
-              com.fyp.avro.AvroStopTimeUpdate e0 = (ga0 != null ? ga0.peek() : null);
-              if (e0 == null) {
-                e0 = new com.fyp.avro.AvroStopTimeUpdate();
-              }
-              e0.customDecode(in);
-              a0.add(e0);
-            }
-          }
+          this.vehicleTimestamp = in.readString(this.vehicleTimestamp instanceof Utf8 ? (Utf8)this.vehicleTimestamp : null);
           break;
 
         default:

@@ -1,7 +1,7 @@
 {
   "type": "record",
   "name": "AvroVehicleEvent",
-  "namespace": "com.fyp.avro",
+  "namespace": "com.fyp.core.avro",
   "fields": [
     {
       "name": "tripId",

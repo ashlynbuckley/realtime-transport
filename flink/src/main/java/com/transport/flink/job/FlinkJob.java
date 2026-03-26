@@ -1,9 +1,7 @@
 package com.transport.flink.job;
 
-import com.fyp.avro.AvroRouteMetric;
-import com.fyp.avro.AvroStopTimeUpdate;
-import com.fyp.avro.AvroTripUpdateEvent;
-import com.fyp.avro.AvroVehicleEvent;
+
+import com.fyp.core.avro.*;
 import com.transport.flink.process.DelayAggregate;
 import com.transport.flink.process.DelayProcessWindowFunction;
 import com.transport.flink.process.MetricMapper;
