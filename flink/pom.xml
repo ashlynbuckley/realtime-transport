@@ -76,13 +76,13 @@
         <dependency>
             <groupId>org.apache.flink</groupId>
             <artifactId>flink-avro</artifactId>
-            <version>2.2.0</version>
+            <version>${flink.version}</version>
         </dependency>
-        <dependency>
-            <groupId>io.confluent</groupId>
-            <artifactId>kafka-avro-serializer</artifactId>
-            <version>8.1.1</version>
-        </dependency>
+<!--        <dependency>-->
+<!--            <groupId>io.confluent</groupId>-->
+<!--            <artifactId>kafka-avro-serializer</artifactId>-->
+<!--            <version>8.1.1</version>-->
+<!--        </dependency>-->
 
         <!-- Postgres JDBC driver -->
         <dependency>
