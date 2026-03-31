@@ -1,7 +1,6 @@
-package com.fyp.springapp.mapping;
+package com.fyp.springapp.mapping.vehicle;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -27,14 +26,14 @@ public class VehicleEventMapper {
     private List<VehicleEvent> mapDtoToPojo(VehicleDTO vehicleDTO) {
         List<VehicleEvent> events = new ArrayList<>();
         //Mapping per Entity
-        for (Entity entity : vehicleDTO.getEntity()) {
+        for (VehicleEntity entity : vehicleDTO.getEntities()) {
             VehicleEvent vehicleEvent = mapEntityToEvent(entity);
             events.add(vehicleEvent);
         }
         return events;
     }
 
-    private VehicleEvent mapEntityToEvent(Entity entity) {
+    private VehicleEvent mapEntityToEvent(VehicleEntity entity) {
         //Using getters and setters to move the data over - doing this to separate the internal and external representations of my VehicleEvents
         return new VehicleEvent(
                 entity.getVehicle().getTrip().getTripId(),

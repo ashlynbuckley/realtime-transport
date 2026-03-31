@@ -1,6 +1,8 @@
-package com.fyp.springapp.mapping;
+package com.fyp.springapp.mapping.vehicle;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fyp.springapp.mapping.Header;
 
 import java.util.List;
 
@@ -10,7 +12,8 @@ import java.util.List;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class VehicleDTO {
     private Header header;
-    private List<Entity> entity;
+    @JsonProperty("entity")
+    private List<VehicleEntity> entities;
 
     public Header getHeader() {
         return header;
@@ -18,10 +21,10 @@ public class VehicleDTO {
     public void setHeader(Header header) {
         this.header = header;
     }
-    public List<Entity> getEntity() {
-        return entity;
+    public List<VehicleEntity> getEntities() {
+        return entities;
     }
-    public void setEntity(List<Entity> entity) {
-        this.entity = entity;
+    public void setEntities(List<VehicleEntity> entities) {
+        this.entities = entities;
     }
 }

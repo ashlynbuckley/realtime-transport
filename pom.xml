@@ -11,14 +11,15 @@
 
     <modules>
         <module>flink</module>
-        <module>silver-surfer</module>
         <module>spring-app</module>
+        <module>transport-core</module>
     </modules>
 
     <properties>
         <maven.compiler.source>17</maven.compiler.source>
         <maven.compiler.target>17</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <java.version>17</java.version>
     </properties>
 
 </project>

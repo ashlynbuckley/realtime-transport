@@ -1,27 +1,29 @@
-package com.fyp.springapp.mapping;
+package com.fyp.springapp.mapping.tripupdate;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
+import java.util.List;
 
-/**
- * Internal representation of vehicle events
- */
-public class VehicleEvent{
+public class TripUpdateEvent {
+    //TODO: will most likely trim this down once i know what i dont need bc it's already in VehicleEvent
     private String tripId;
     private String startTime;
     private String startDate;
+    //from trip
     private String scheduleRelationship;
     private String routeId;
-    private String vehicleTimestamp;
+    private String tripUpdateTimestamp;
+    private List<StopTimeUpdatePOJO> updates;
 
-    public VehicleEvent(String tripId, String startTime, String startDate, String scheduleRelationship, String routeId, String vehicleTimestamp) {
+    public TripUpdateEvent(String tripId, String startTime, String startDate, String scheduleRelationship,
+                           String routeId, String tripUpdateTimestamp, List<StopTimeUpdatePOJO> updates) {
         this.tripId = tripId;
         this.startTime = startTime;
         this.startDate = startDate;
         this.scheduleRelationship = scheduleRelationship;
         this.routeId = routeId;
-        this.vehicleTimestamp = vehicleTimestamp;
-    }
+        this.tripUpdateTimestamp = tripUpdateTimestamp;
+        this.updates = updates;
 
+    }
     public String getTripId() {
         return tripId;
     }
@@ -57,10 +59,17 @@ public class VehicleEvent{
         this.routeId = routeId;
     }
 
-    public String getVehicleTimestamp() {
-        return vehicleTimestamp;
+    public String getTripUpdateTimestamp() {
+        return tripUpdateTimestamp;
     }
-    public void setVehicleTimestamp(String vehicleTimestamp) {
-        this.vehicleTimestamp = vehicleTimestamp;
+    public void setTripUpdateTimestamp(String tripUpdateTimestamp) {
+        this.tripUpdateTimestamp = tripUpdateTimestamp;
+    }
+
+    public List<StopTimeUpdatePOJO> getUpdates() {
+        return updates;
+    }
+    public void setUpdates(List<StopTimeUpdatePOJO> updates) {
+        this.updates = updates;
     }
 }

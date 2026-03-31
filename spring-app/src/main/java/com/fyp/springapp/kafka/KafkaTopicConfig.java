@@ -25,4 +25,22 @@ public class KafkaTopicConfig {
     public NewTopic testTopicSB() {
         return new NewTopic("test-topic-sb", 1, (short) 1);
     }
+
+    @Bean
+    public NewTopic vehicleTopic() {
+        return new NewTopic("vehicle-topic", 1, (short) 1)
+                //retention policy (1 day)
+                .configs(Map.of(
+                        "retention.ms", "86400000"
+                ));
+    }
+
+    @Bean
+    public NewTopic tripUpdateTopic() {
+        return new NewTopic("trip-update-topic", 1, (short) 1)
+                //retention policy (1 day)
+                .configs(Map.of(
+                "retention.ms", "86400000"
+                ));
+    }
 }
