@@ -1,6 +1,5 @@
 package com.transport.flink.job;
 
-
 import com.fyp.core.avro.AvroVehicleEvent;
 import com.fyp.core.avro.AvroTripUpdateEvent;
 import com.fyp.core.avro.AvroStopTimeUpdate;
@@ -9,9 +8,11 @@ import com.transport.flink.process.DelayAggregate;
 import com.transport.flink.process.DelayProcessWindowFunction;
 import com.transport.flink.process.MetricMapper;
 import com.transport.flink.process.RouteMetric;
+import com.transport.flink.process.observation.DelayObservation;
 import com.transport.flink.process.observation.DelayType;
 import com.transport.flink.sink.KafkaSinkFactory;
 import com.transport.flink.source.KafkaSourceFactory;
+import org.apache.flink.api.common.eventtime.WatermarkStrategy;
 import org.apache.flink.api.common.functions.FlatMapFunction;
 import org.apache.flink.connector.kafka.sink.KafkaSink;
 import org.apache.flink.streaming.api.datastream.DataStream;
@@ -20,6 +21,8 @@ import org.apache.flink.streaming.api.environment.StreamExecutionEnvironment;
 import org.apache.flink.streaming.api.windowing.assigners.TumblingEventTimeWindows;
 import org.apache.flink.streaming.api.windowing.time.Time;
 import org.apache.flink.util.Collector;
+
+import java.time.Duration;
 
 public class FlinkJob {
     public static void main(String[] args) throws Exception {
@@ -36,11 +39,7 @@ public class FlinkJob {
         //Source
         DataStream<AvroVehicleEvent> kafkaVehicleStream = KafkaSourceFactory.createKafkaSource(env, VEHICLE_TOPIC, "flink-vehicle-group", AvroVehicleEvent.class);
         DataStream<AvroTripUpdateEvent> kafkaTripUpdateStream = KafkaSourceFactory.createKafkaSource(env, TRIP_TOPIC, "flink-trip-update-group", AvroTripUpdateEvent.class);
-        kafkaTripUpdateStream
-                .map(event -> {
-                    System.out.println("Incoming class: " + event.getClass());
-                    return event;
-                });
+
         //Sink
         KafkaSink<AvroRouteMetric> kafkaSink = KafkaSinkFactory.configureKafkaSink(env, ROUTE_METRIC_TOPIC);
 
@@ -61,6 +60,15 @@ public class FlinkJob {
 
         //Flatten stream
         DataStream<com.transport.flink.process.observation.DelayObservation> delayStream = flattenStopTimeUpdates(kafkaTripUpdateStream);
+
+        //needed for event time windows
+        delayStream = delayStream
+                .assignTimestampsAndWatermarks(
+                        WatermarkStrategy
+                                .<DelayObservation>forBoundedOutOfOrderness(Duration.ofSeconds(30))
+                                .withTimestampAssigner((event, timestamp) -> event.getTimestamp())
+                );
+
         //Aggregate metrics
         KeyedStream<com.transport.flink.process.observation.DelayObservation, String> keyedByRouteId =
                 delayStream.keyBy(com.transport.flink.process.observation.DelayObservation::getRouteId);
@@ -73,21 +81,21 @@ public class FlinkJob {
                 .map(new MetricMapper())
                 .sinkTo(kafkaSink);
 
-//        //medium granularity - 30mins
-//        keyedByRouteId
-//                .window(TumblingEventTimeWindows.of(Time.minutes(30)))
-//                .aggregate(new DelayAggregate(),
-//                        new DelayProcessWindowFunction())
-//                .map(new MetricMapper())
-//                .sinkTo(kafkaSink);
-//
-//        //coarse granularity - 1hr
-//        keyedByRouteId
-//                .window(TumblingEventTimeWindows.of(Time.hours(1)))
-//                .aggregate(new DelayAggregate(),
-//                        new DelayProcessWindowFunction())
-//                .map(new MetricMapper())
-//                .sinkTo(kafkaSink);
+        //medium granularity - 30mins
+        keyedByRouteId
+                .window(TumblingEventTimeWindows.of(Time.minutes(30)))
+                .aggregate(new DelayAggregate(),
+                        new DelayProcessWindowFunction())
+                .map(new MetricMapper())
+                .sinkTo(kafkaSink);
+
+        //coarse granularity - 1hr
+        keyedByRouteId
+                .window(TumblingEventTimeWindows.of(Time.hours(1)))
+                .aggregate(new DelayAggregate(),
+                        new DelayProcessWindowFunction())
+                .map(new MetricMapper())
+                .sinkTo(kafkaSink);
 
         env.execute("Transport-metrics");
     }
@@ -98,8 +106,6 @@ public class FlinkJob {
 
                     @Override
                     public void flatMap(AvroTripUpdateEvent event, Collector<com.transport.flink.process.observation.DelayObservation> out) {
-                        System.out.println("TYPE: " + event.getClass());
-                        System.out.println("SCHEMA: " + ((org.apache.avro.generic.GenericRecord) event).getSchema());
                         //Skip over any that are empty
                         if (event.getStopTimeUpdates() == null) {
                             return;
@@ -114,7 +120,8 @@ public class FlinkJob {
                                         event.getRouteId().toString(),
                                         event.getTripId().toString(),
                                         delayType,
-                                        update.getADelay()
+                                        update.getADelay(),
+                                        event.getTripUpdateTimestamp().toString()
                                 ));
                             }
                             //Departure delay
@@ -125,7 +132,8 @@ public class FlinkJob {
                                         event.getRouteId().toString(),
                                         event.getTripId().toString(),
                                         delayType,
-                                        update.getDDelay()
+                                        update.getDDelay(),
+                                        event.getTripUpdateTimestamp().toString()
                                 ));
                             }
                         }

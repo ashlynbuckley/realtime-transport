@@ -5,12 +5,14 @@ public class DelayObservation {
     String tripId;
     DelayType delayType;
     Integer delay;
+    long timestamp;
 
-    public DelayObservation(String routeId, String tripId, DelayType delayType, Integer delay) {
+    public DelayObservation(String routeId, String tripId, DelayType delayType, Integer delay, String timestamp) {
         this.routeId = routeId;
         this.tripId = tripId;
         this.delayType = DelayType.ARRIVAL;
         this.delay = delay;
+        this.timestamp = Long.parseLong(timestamp) * 1000L;
     }
 
     public String getRouteId() {
@@ -36,5 +38,11 @@ public class DelayObservation {
     }
     public void setDelay(Integer delay) {
         this.delay = delay;
+    }
+    public long getTimestamp() {
+        return timestamp;
+    }
+    public void setTimestamp(long timestamp) {
+        this.timestamp = timestamp;
     }
 }
