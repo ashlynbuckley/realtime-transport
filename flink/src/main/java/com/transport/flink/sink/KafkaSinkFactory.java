@@ -9,7 +9,7 @@ import org.apache.flink.streaming.api.environment.StreamExecutionEnvironment;
 public class KafkaSinkFactory {
 
     public static KafkaSink<AvroRouteMetric> configureKafkaSink(StreamExecutionEnvironment env, String topic) {
-
+        System.out.println("Building sink");
         return KafkaSink.<AvroRouteMetric>builder()
                 .setBootstrapServers("localhost:29092")
                 .setRecordSerializer(

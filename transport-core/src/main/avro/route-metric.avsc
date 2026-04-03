@@ -16,6 +16,10 @@
       "type": "long"
     },
     {
+      "name": "windowType",
+      "type": "string"
+    },
+    {
       "name": "delayCount",
       "type": "long"
     },

@@ -21,7 +21,7 @@ class PollingService {
     private final TripUpdateEventPublisher tripUpdateEventPublisher;
     private final String vehiclesPath = "/gtfsr/v2/Vehicles";
     private final String tripUpdatePath = "/gtfsr/v2/TripUpdates";
-    private final int realTimePollInterval = 30000;
+    private final int realTimePollInterval = 60000;
 
     public PollingService(WebClient webClient, VehicleEventMapper vehicleEventMapper, TripUpdateEventMapper tripUpdateEventMapper, FilterEventsService filterEventsService, VehicleEventPublisher eventPublisher, TripUpdateEventPublisher tripEventPublisher) {
         this.webClient = webClient;
@@ -77,6 +77,7 @@ class PollingService {
         List<TripUpdateEvent> filteredEvents = filterEventsService.filterTripUpdateEvents(events);
 
         for (TripUpdateEvent event : filteredEvents) {
+            System.out.println(event);
             tripUpdateEventPublisher.sendTripUpdateEventToKafka(event);
         }
     }
