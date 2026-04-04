@@ -34,6 +34,7 @@ class PollingService {
 
     @Scheduled(fixedRate = realTimePollInterval)
     public void sendReqToGtfsVehicle() throws JsonProcessingException {
+        //Get response
         String response = webClient.get()
                 .uri(uriBuilder ->
                         uriBuilder
@@ -48,10 +49,13 @@ class PollingService {
                 .bodyToMono(String.class)
                 .block();
 
+        //Map JSON -> DTO -> POJO
         List<VehicleEvent> events = vehicleEventMapper.mapJsonBodyToPojo(response);
+        //Get rid of irrelevant data
         List<VehicleEvent> filteredEvents = filterEventsService.filterVehicleEvents(events);
-
+        //For each event, send to Kafka
         for (VehicleEvent event : filteredEvents) {
+            //Print statement for debugging
             System.out.println(event);
             vehicleEventPublisher.sendVehicleEventToKafka(event);
         }
@@ -59,6 +63,7 @@ class PollingService {
 
     @Scheduled(fixedRate = realTimePollInterval)
     public void sendReqToGtfsTripUpdates() throws JsonProcessingException {
+        //Get response
         String response = webClient.get()
                 .uri(uriBuilder ->
                         uriBuilder
@@ -73,10 +78,13 @@ class PollingService {
                 .bodyToMono(String.class)
                 .block();
 
+        //Map JSON -> DTO -> POJO
         List<TripUpdateEvent> events = tripUpdateEventMapper.mapJsonBodyToPojo(response);
+        //Get rid of irrelevant data
         List<TripUpdateEvent> filteredEvents = filterEventsService.filterTripUpdateEvents(events);
-
+        //For each event, send to Kafka
         for (TripUpdateEvent event : filteredEvents) {
+            //Print statement for debugging
             System.out.println(event);
             tripUpdateEventPublisher.sendTripUpdateEventToKafka(event);
         }

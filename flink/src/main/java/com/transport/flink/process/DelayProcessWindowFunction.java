@@ -4,6 +4,9 @@ import org.apache.flink.streaming.api.functions.windowing.ProcessWindowFunction;
 import org.apache.flink.streaming.api.windowing.windows.TimeWindow;
 import org.apache.flink.util.Collector;
 
+/**
+ * Window function that outputs RouteMetric at the end of accumulating data and deriving metrics at the end of a window of time
+ */
 public class DelayProcessWindowFunction extends ProcessWindowFunction<
         DelayAccumulator, RouteMetric, String, TimeWindow> {
 

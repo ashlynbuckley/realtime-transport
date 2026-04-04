@@ -1,5 +1,8 @@
 package com.fyp.springapp.mapping.tripupdate;
 
+/**
+ * Internal representation of a stop time update event
+ */
 public class StopTimeUpdatePOJO {
     private String stopSequence;
     private Integer aDelay;

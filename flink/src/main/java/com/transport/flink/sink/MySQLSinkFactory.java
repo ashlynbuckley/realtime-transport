@@ -10,8 +10,11 @@ import org.apache.flink.streaming.api.functions.sink.SinkFunction;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
+/**
+ * MySQL used during development (recreated in the FlinkMySQLJob)
+ */
 public class MySQLSinkFactory {
-    //Note: It's on port 3307 b/c (apparently) there's already a mysql db on 3306
+    //Note: It's on port 3307
     private static final String URL = "jdbc:mysql://localhost:3307/flink_test";
     private static final String DRIVER_NAME = "com.mysql.cj.jdbc.Driver";
     private static final String USER = "flink";

@@ -29,6 +29,7 @@ public class TripUpdateEventPublisher {
         System.out.println("Event sent to Kafka topic");
     }
 
+    //Convert the POJO to the Avro version of it
     private AvroTripUpdateEvent serialiseTripUpdateEvent(TripUpdateEvent event) {
         //Check for null trip ID
         if (event.getTripId() == null) {

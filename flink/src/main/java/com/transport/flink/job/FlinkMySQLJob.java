@@ -34,6 +34,7 @@ public class FlinkMySQLJob {
                 "Kafka Source For MySQL"
         );
 
+        //move the data from the topic into the sink using a query
         stream.addSink(
                 JdbcSink.sink("INSERT INTO trip_events (" +
                                 "routeId, windowStart, windowEnd, windowType, delayCount, " +

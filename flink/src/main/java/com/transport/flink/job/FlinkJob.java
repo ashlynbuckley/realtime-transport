@@ -7,7 +7,6 @@ import com.fyp.core.avro.AvroRouteMetric;
 import com.transport.flink.process.DelayAggregate;
 import com.transport.flink.process.DelayProcessWindowFunction;
 import com.transport.flink.process.MetricMapper;
-import com.transport.flink.process.RouteMetric;
 import com.transport.flink.process.observation.DelayObservation;
 import com.transport.flink.process.observation.DelayType;
 import com.transport.flink.sink.KafkaSinkFactory;
@@ -18,7 +17,6 @@ import org.apache.flink.connector.kafka.sink.KafkaSink;
 import org.apache.flink.streaming.api.datastream.DataStream;
 import org.apache.flink.streaming.api.datastream.KeyedStream;
 import org.apache.flink.streaming.api.environment.StreamExecutionEnvironment;
-import org.apache.flink.streaming.api.functions.ProcessFunction;
 import org.apache.flink.streaming.api.windowing.assigners.TumblingEventTimeWindows;
 import org.apache.flink.streaming.api.windowing.time.Time;
 import org.apache.flink.util.Collector;
@@ -62,23 +60,28 @@ public class FlinkJob {
         //Flatten stream
         DataStream<com.transport.flink.process.observation.DelayObservation> delayStream = flattenStopTimeUpdates(kafkaTripUpdateStream);
 
-        //needed for event time windows
+        //needed for event time windows (retrieve timestamps from the data itself)
         delayStream = delayStream
                 .assignTimestampsAndWatermarks(
                         WatermarkStrategy
+                                //set the max delay for events that may arrive late (as in out of order)
                                 .<DelayObservation>forBoundedOutOfOrderness(Duration.ofSeconds(30))
                                 .withTimestampAssigner((event, timestamp) -> event.getTimestamp())
                 );
 
         //Aggregate metrics
+        //Firstly, key by route ID
         KeyedStream<com.transport.flink.process.observation.DelayObservation, String> keyedByRouteId =
                 delayStream.keyBy(com.transport.flink.process.observation.DelayObservation::getRouteId);
 
         //fine granularity - 5mins
         keyedByRouteId
+                //set the time windows
                 .window(TumblingEventTimeWindows.of(Time.minutes(5)))
+                //accumulate and produce the metrics after every window time closes
                 .aggregate(new DelayAggregate(),
                         new DelayProcessWindowFunction())
+                //map RouteMetric to AvroRouteMetric
                 .map(new MetricMapper())
                 .sinkTo(kafkaSink);
 

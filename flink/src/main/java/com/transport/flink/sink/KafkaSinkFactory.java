@@ -11,14 +11,17 @@ public class KafkaSinkFactory {
     public static KafkaSink<AvroRouteMetric> configureKafkaSink(StreamExecutionEnvironment env, String topic) {
         System.out.println("Building sink");
         return KafkaSink.<AvroRouteMetric>builder()
+                //Inside Docker
                 .setBootstrapServers("localhost:29092")
                 .setRecordSerializer(
                     KafkaRecordSerializationSchema.builder()
                             .setTopic(topic)
+                            //For schema registry
                             .setValueSerializationSchema(
                                     ConfluentRegistryAvroSerializationSchema.forSpecific(
                                             AvroRouteMetric.class,
                                             topic + "-value",
+                                            //Inside Docker
                                             "http://localhost:8081")
                             )
                             .build()

@@ -1,5 +1,8 @@
 package com.transport.flink.process.observation;
 
+/**
+ * Flattened event
+ */
 public class DelayObservation {
     String routeId;
     String tripId;
