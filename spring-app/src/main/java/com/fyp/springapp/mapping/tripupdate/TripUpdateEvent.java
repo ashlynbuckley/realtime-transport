@@ -2,8 +2,10 @@ package com.fyp.springapp.mapping.tripupdate;
 
 import java.util.List;
 
+/**
+ * Internal representation of a trip update event
+ */
 public class TripUpdateEvent {
-    //TODO: will most likely trim this down once i know what i dont need bc it's already in VehicleEvent
     private String tripId;
     private String startTime;
     private String startDate;

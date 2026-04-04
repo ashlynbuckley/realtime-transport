@@ -11,6 +11,7 @@ public class MetricMapper implements MapFunction<RouteMetric, AvroRouteMetric> {
                 .setRouteId(routeMetric.routeId)
                 .setWindowStart(routeMetric.windowStart)
                 .setWindowEnd(routeMetric.windowEnd)
+                .setWindowType(routeMetric.windowType)
                 .setDelayCount(routeMetric.delayCount)
                 .setMaxArrivalDelay(routeMetric.maxArrivalDelay)
                 .setMinArrivalDelay(routeMetric.minArrivalDelay)

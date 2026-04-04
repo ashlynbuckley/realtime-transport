@@ -4,6 +4,9 @@ import com.transport.flink.process.observation.DelayObservation;
 import com.transport.flink.process.observation.DelayType;
 import org.apache.flink.api.common.functions.AggregateFunction;
 
+/**
+ * Aggregate function for delay metrics
+ */
 public class DelayAggregate implements AggregateFunction<DelayObservation, DelayAccumulator, DelayAccumulator> {
 
     @Override
@@ -28,11 +31,13 @@ public class DelayAggregate implements AggregateFunction<DelayObservation, Delay
         return delayAccumulator;
     }
 
+    //Return results
     @Override
     public DelayAccumulator getResult(DelayAccumulator delayAccumulator) {
         return delayAccumulator;
     }
 
+    //Continue to add new data to the accumulated metrics
     @Override
     public DelayAccumulator merge(DelayAccumulator a, DelayAccumulator b) {
 

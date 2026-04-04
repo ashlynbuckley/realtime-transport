@@ -24,6 +24,7 @@ public class VehicleEventPublisher {
         System.out.println("Event sent to Kafka topic");
     }
 
+    //Convert the POJO to the Avro version of it
     private AvroVehicleEvent serialiseVehicleEvent(VehicleEvent event) {
         AvroVehicleEvent avroEvent = AvroVehicleEvent.newBuilder()
                 .setTripId(event.getTripId())

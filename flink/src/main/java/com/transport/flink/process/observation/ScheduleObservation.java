@@ -1,5 +1,6 @@
 package com.transport.flink.process.observation;
 
+//Was going to be used for cancelled metric - never implemented
 public class ScheduleObservation {
     String routeId;
     String tripId;

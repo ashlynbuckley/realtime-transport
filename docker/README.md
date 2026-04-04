@@ -40,12 +40,17 @@ Then, add some messages:
 
 These messages will remain until you stop the container - even if Flink ingests them.
 
+When using the confluent image, you should do `cd /usr/bin/` and then `kafka-topics --bootstrap-server localhost:9092 --list
+` if you want to see the current topics.
+
 ## Step 4:
 Now, let's set up the MySQL side.
 
 `docker exec -it mysql bash`
 
 `mysql -u flink -p`
+
+Use the password set out in docker-compose.yml.
 
 Once in the mysql> cmd line:
 

@@ -21,6 +21,7 @@ public class KafkaTopicConfig {
         return new KafkaAdmin(config);
     }
 
+    //Topic used during development - not part of final code
     @Bean
     public NewTopic testTopicSB() {
         return new NewTopic("test-topic-sb", 1, (short) 1);
