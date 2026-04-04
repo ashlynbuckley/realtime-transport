@@ -1,7 +1,6 @@
 # Docker Instructions
 
-## Overview
-Currently, Kafka and MySQL run in docker containers and Flink can be run through Intellij using flink-clients.
+This README is for development purposes. It's a place for me to keep cmds handy for when I'm working with Docker.
 
 ---
 ## Step 1:
@@ -18,7 +17,7 @@ Each time you start the containers, you will have to configure some things. Firs
 To enter the Kafka terminal, do:
 `docker exec -it -w /opt/kafka/bin broker sh`
 
-for confluent kafka image:
+or for confluent kafka image:
 `docker exec -it broker sh`
 
 You should see `/opt/kafka/bin $`
