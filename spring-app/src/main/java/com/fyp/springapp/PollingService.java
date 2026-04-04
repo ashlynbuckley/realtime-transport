@@ -42,9 +42,9 @@ class PollingService {
                                 .queryParam("format","json")
                                 .build()
                 )
-                .header("Ocp-Apim-Subscription-Key", "[key]")
+                .header("Ocp-Apim-Subscription-Key", "{$API_KEY_1}")
                 .header("Cache-Control", "no-cache")
-                .header("x-api-key","[key]")
+                .header("x-api-key","{$API_KEY_2}")
                 .retrieve()
                 .bodyToMono(String.class)
                 .block();

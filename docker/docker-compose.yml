@@ -64,10 +64,10 @@ services:
     ports:
       - "3307:3306"
     environment:
-      MYSQL_ROOT_PASSWORD: W1lburgra!
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
       MYSQL_DATABASE: flink_test
-      MYSQL_USER: flink
-      MYSQL_PASSWORD: flink
+      MYSQL_USER: flink_placeholder
+      MYSQL_PASSWORD: flink_placeholder
     command: >
       --default-authentication-plugin=mysql_native_password
       --max_connections=200
