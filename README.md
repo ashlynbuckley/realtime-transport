@@ -15,7 +15,7 @@ This repository is broken down into three modules: transport-core, spring-app an
 code module.
 - **spring-app:** This is the producer service. It's in charge of polling the API endpoints at regular intervals, parsing the JSON responses to POJOs, filtering the POJOs, serialising
 the POJOs, and finally publishing them to the respective Apache Kafka topic.
-- **flink:** This is the Apache Flink service. It ingests events from the Apache Kafka topics and turns them into data streams. Flink then operates on these streams to produced aggregated metrics
+- **flink:** This is the Apache Flink service. It ingests events from the Apache Kafka topics and turns them into data streams. Flink then operates on these streams to produce aggregated metrics
 over different windows of time. The metrics themselves pertain to delays and each route's punctuality over time.
 
 ---
