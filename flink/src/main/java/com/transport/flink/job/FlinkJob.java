@@ -65,8 +65,9 @@ public class FlinkJob {
                 .assignTimestampsAndWatermarks(
                         WatermarkStrategy
                                 //set the max delay for events that may arrive late (as in out of order)
-                                .<DelayObservation>forBoundedOutOfOrderness(Duration.ofSeconds(30))
+                                .<DelayObservation>forBoundedOutOfOrderness(Duration.ofMinutes(60))
                                 .withTimestampAssigner((event, timestamp) -> event.getTimestamp())
+                                .withIdleness(Duration.ofSeconds(60))
                 );
 
         //Aggregate metrics
